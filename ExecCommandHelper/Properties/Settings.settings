@@ -1,0 +1,27 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ExecCommandHelper.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="CommandLine" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="exec_dir" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="main_location" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="main_size" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">818, 445</Value>
+    </Setting>
+    <Setting Name="edit_size" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">786, 550</Value>
+    </Setting>
+    <Setting Name="relative_path" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="form_output_size" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">692, 387</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
