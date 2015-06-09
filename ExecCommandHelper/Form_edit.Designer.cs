@@ -40,9 +40,8 @@
             this.toolStripButton_add = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_del = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_clear = new System.Windows.Forms.ToolStripButton();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button_ok = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -134,7 +133,7 @@
             this.toolStripButton_add.Name = "toolStripButton_add";
             this.toolStripButton_add.Size = new System.Drawing.Size(43, 23);
             this.toolStripButton_add.Text = "追加";
-            this.toolStripButton_add.Click += new System.EventHandler(this.toolStripButton_add_Click);
+
             // 
             // toolStripButton_del
             // 
@@ -144,7 +143,6 @@
             this.toolStripButton_del.Name = "toolStripButton_del";
             this.toolStripButton_del.Size = new System.Drawing.Size(43, 23);
             this.toolStripButton_del.Text = "削除";
-            this.toolStripButton_del.Click += new System.EventHandler(this.toolStripButton_del_Click);
             // 
             // toolStripButton_clear
             // 
@@ -154,28 +152,6 @@
             this.toolStripButton_clear.Name = "toolStripButton_clear";
             this.toolStripButton_clear.Size = new System.Drawing.Size(43, 23);
             this.toolStripButton_clear.Text = "クリア";
-            this.toolStripButton_clear.Click += new System.EventHandler(this.toolStripButton_clear_Click);
-            // 
-            // listView1
-            // 
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1});
-            this.listView1.LabelEdit = true;
-            this.listView1.Location = new System.Drawing.Point(12, 29);
-            this.listView1.MultiSelect = false;
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(726, 300);
-            this.listView1.TabIndex = 7;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "引数";
-            this.columnHeader1.Width = 709;
             // 
             // button_ok
             // 
@@ -189,13 +165,21 @@
             this.button_ok.UseVisualStyleBackColor = true;
             this.button_ok.Click += new System.EventHandler(this.button_ok_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(18, 29);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(747, 300);
+            this.textBox1.TabIndex = 9;
+            // 
             // Form_edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = global::ExecCommandHelper.Properties.Settings.Default.edit_size;
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button_ok);
-            this.Controls.Add(this.listView1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.groupBox1);
             this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::ExecCommandHelper.Properties.Settings.Default, "edit_size", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -224,8 +208,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButton_add;
         private System.Windows.Forms.ToolStripButton toolStripButton_del;
         private System.Windows.Forms.ToolStripButton toolStripButton_clear;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.Button button_ok;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

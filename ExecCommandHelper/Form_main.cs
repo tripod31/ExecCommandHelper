@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace ExecCommandHelper
 {
@@ -87,15 +88,16 @@ namespace ExecCommandHelper
         private void button_exec_Click(object sender, EventArgs e)
         {
             string exe_file,args;
-            int pos = textBox_commandLine.Text.IndexOf(" ");
+            string commandline = get_commandLine();
+            int pos = commandline.IndexOf(" ");
             if (pos > 0)
             {
-                exe_file = textBox_commandLine.Text.Substring(0, pos);
-                args = textBox_commandLine.Text.Substring(pos+1);
+                exe_file = commandline.Substring(0, pos);
+                args = commandline.Substring(pos+1);
             }
             else
             {
-                exe_file = textBox_commandLine.Text;
+                exe_file = commandline;
                 args = "";
             }
             
@@ -145,7 +147,70 @@ namespace ExecCommandHelper
                 textBox_commandLine.Text = form.Info.commandLine;
             }
         }
+        private void button_folder_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialog1.SelectedPath = textBox_exec_dir.Text;
+            if (folderBrowserDialog1.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
 
+            string path = folderBrowserDialog1.SelectedPath;
+            if (radioButton_relativepath.Checked)
+            {
+                path = MakeRelativePath(textBox_exec_dir.Text + Path.DirectorySeparatorChar, path);
+            }
+            add_text(path);
+        }
+
+        // textBoxに文字列を挿入
+        private void add_text(string str)
+        {
+            textBox_commandLine.Text = textBox_commandLine.Text.Substring(0, textBox_commandLine.SelectionStart)
+                + str
+                + textBox_commandLine.Text.Substring(textBox_commandLine.SelectionStart + textBox_commandLine.SelectionLength);
+        }
+
+
+        private void button_file_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.InitialDirectory = textBox_exec_dir.Text;
+            if (openFileDialog1.ShowDialog() != DialogResult.OK)
+                return;
+            string path = openFileDialog1.FileName;
+            if (radioButton_relativepath.Checked)
+            {
+                path = MakeRelativePath(textBox_exec_dir.Text + Path.DirectorySeparatorChar, path);
+            }
+            add_text(path);
+        }
+
+        private string get_commandLine()
+        {
+            return textBox_commandLine.Text.Replace(Environment.NewLine, " ");
+
+        }
+
+        public String MakeRelativePath(String fromPath, String toPath)
+        {
+            if (String.IsNullOrEmpty(fromPath)) throw new ArgumentNullException("fromPath");
+            if (String.IsNullOrEmpty(toPath)) throw new ArgumentNullException("toPath");
+
+            Uri fromUri = new Uri(fromPath);
+            Uri toUri = new Uri(toPath);
+
+            if (fromUri.Scheme != toUri.Scheme) { return toPath; } // path can't be made relative.
+
+            Uri relativeUri = fromUri.MakeRelativeUri(toUri);
+            String relativePath = Uri.UnescapeDataString(relativeUri.ToString());
+
+            if (toUri.Scheme.ToUpperInvariant() == "FILE")
+            {
+                relativePath = relativePath.Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar);
+            }
+
+            return relativePath;
+        }
 
     }
 
