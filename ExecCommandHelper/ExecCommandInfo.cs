@@ -8,9 +8,17 @@ namespace ExecCommandHelper
 {
     public class ExecCommandInfo
     {
+        private string _name;
         private string _commandLine;
         private string _exec_dir;
-        
+
+        public string name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+
+
         public string commandLine{
             get { return _commandLine; }
             set {_commandLine=value;}
@@ -26,10 +34,18 @@ namespace ExecCommandHelper
 
         }
 
-        public ExecCommandInfo(string commandLine,string exec_dir)
+        public ExecCommandInfo(string name,string commandLine,string exec_dir)
         {
+            _name = name;
             _commandLine = commandLine;
             _exec_dir = exec_dir;
+        }
+
+        public void copy(ExecCommandInfo info)
+        {
+            _name = info.name;
+            _commandLine = info.commandLine;
+            _exec_dir = info.exec_dir;
         }
     }
 }

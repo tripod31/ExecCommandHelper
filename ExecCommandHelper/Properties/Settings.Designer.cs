@@ -61,7 +61,7 @@ namespace ExecCommandHelper.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("818, 445")]
+        [global::System.Configuration.DefaultSettingValueAttribute("818, 490")]
         public global::System.Drawing.Size main_size {
             get {
                 return ((global::System.Drawing.Size)(this["main_size"]));
@@ -104,6 +104,30 @@ namespace ExecCommandHelper.Properties {
             }
             set {
                 this["form_output_size"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("MS UI Gothic, 11.2695656pt")]
+        public global::System.Drawing.Font font_commadline {
+            get {
+                return ((global::System.Drawing.Font)(this["font_commadline"]));
+            }
+            set {
+                this["font_commadline"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string cur_info {
+            get {
+                return ((string)(this["cur_info"]));
+            }
+            set {
+                this["cur_info"] = value;
             }
         }
     }

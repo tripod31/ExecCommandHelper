@@ -12,7 +12,7 @@
       <Value Profile="(Default)">0, 0</Value>
     </Setting>
     <Setting Name="main_size" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">818, 445</Value>
+      <Value Profile="(Default)">818, 490</Value>
     </Setting>
     <Setting Name="edit_size" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">786, 550</Value>
@@ -22,6 +22,12 @@
     </Setting>
     <Setting Name="form_output_size" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">692, 387</Value>
+    </Setting>
+    <Setting Name="font_commadline" Type="System.Drawing.Font" Scope="User">
+      <Value Profile="(Default)">MS UI Gothic, 11.2695656pt</Value>
+    </Setting>
+    <Setting Name="cur_info" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

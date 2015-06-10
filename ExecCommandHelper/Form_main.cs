@@ -1,218 +1,238 @@
-﻿using System;
+using ExecCommandHelper.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
-
+using System.Xml.Serialization;
 namespace ExecCommandHelper
 {
+	public partial class Form_main : Form
+	{
+		private const string XML_FILE = "infos.xml";
+		private List<ExecCommandInfo> _infos = new List<ExecCommandInfo>();
 
-
-    public partial class Form_main : Form
-    {
-        public Form_main()
-        {
-            InitializeComponent();
-        }
-        
-        private void ToolStripMenuItem_load_Click(object sender, EventArgs e)
-        {
-            //保存元のファイル名
-            openFileDialog1.DefaultExt = "xml";
-            if (this.openFileDialog1.ShowDialog() != DialogResult.OK)
-            {
-                return;
-            }
-            string fileName = this.openFileDialog1.FileName;
-
-            //XmlSerializerオブジェクトを作成
-            System.Xml.Serialization.XmlSerializer serializer =
-                new System.Xml.Serialization.XmlSerializer(typeof(ExecCommandInfo));
-            //読み込むファイルを開く
-            System.IO.StreamReader sr = new System.IO.StreamReader(
-                fileName, new System.Text.UTF8Encoding(false));
-            //XMLファイルから読み込み、逆シリアル化する
-            ExecCommandInfo obj = (ExecCommandInfo)serializer.Deserialize(sr);
-            //ファイルを閉じる
-            sr.Close();
-            textBox_commandLine.Text = obj.commandLine;
-            textBox_exec_dir.Text = obj.exec_dir;
-
-        }
-
-        private void ToolStripMenuItem_save_Click(object sender, EventArgs e)
-        {
-            //保存先のファイル名
-            saveFileDialog1.DefaultExt = "xml";
-            if (saveFileDialog1.ShowDialog() != DialogResult.OK)
-            {
-                return;
-            }
-            string fileName = saveFileDialog1.FileName;
-
-            //保存するクラス(SampleClass)のインスタンスを作成
-            ExecCommandInfo obj = new ExecCommandInfo(textBox_commandLine.Text,textBox_exec_dir.Text);
-
-            //XmlSerializerオブジェクトを作成
-            //オブジェクトの型を指定する
-            System.Xml.Serialization.XmlSerializer serializer =
-                new System.Xml.Serialization.XmlSerializer(typeof(ExecCommandInfo));
-            //書き込むファイルを開く（UTF-8 BOM無し）
-            System.IO.StreamWriter sw = new System.IO.StreamWriter(
-                fileName, false, new System.Text.UTF8Encoding(false));
-            //シリアル化し、XMLファイルに保存する
-            serializer.Serialize(sw, obj);
-            //ファイルを閉じる
-            sw.Close();
-        }
-
-        private void Form_main_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Properties.Settings.Default.Save();
-        }
-
-        private void button_exec_dir_Click(object sender, EventArgs e)
-        {
-            folderBrowserDialog1.SelectedPath = textBox_exec_dir.Text;
-            if (this.folderBrowserDialog1.ShowDialog() == DialogResult.OK)
-            {
-                textBox_exec_dir.Text = folderBrowserDialog1.SelectedPath;
-            }
-        }
-
-        private void button_exec_Click(object sender, EventArgs e)
-        {
-            string exe_file,args;
-            string commandline = get_commandLine();
-            int pos = commandline.IndexOf(" ");
-            if (pos > 0)
-            {
-                exe_file = commandline.Substring(0, pos);
-                args = commandline.Substring(pos+1);
-            }
-            else
-            {
-                exe_file = commandline;
-                args = "";
-            }
-            
-            System.Diagnostics.ProcessStartInfo psi =
-                new System.Diagnostics.ProcessStartInfo();
-
-            //出力を読み取れるようにする
-            psi.RedirectStandardInput = false;
-            psi.RedirectStandardOutput = true;
-            psi.RedirectStandardError = true;
-            psi.UseShellExecute = false;
-            //ウィンドウを表示しないようにする
-            psi.CreateNoWindow = true;
-
-            psi.FileName = exe_file;
-            psi.Arguments = args;
-            psi.WorkingDirectory = textBox_exec_dir.Text;
-            //起動
-            System.Diagnostics.Process p=null;
-            try
-            {
-                p = System.Diagnostics.Process.Start(psi);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                return;
-            }
-            //出力を読み取る
-            string stdout = p.StandardOutput.ReadToEnd();
-            string stderr = p.StandardError.ReadToEnd();
-            //WaitForExitはReadToEndの後である必要がある
-            //(親プロセス、子プロセスでブロック防止のため)
-            p.WaitForExit();
-
-            Form_output form = new Form_output(stdout + stderr);
-            form.ShowDialog();
-
-        }
-
-        private void button_edit_Click(object sender, EventArgs e)
-        {
-            ExecCommandInfo info = new ExecCommandInfo(textBox_commandLine.Text,textBox_exec_dir.Text);
-            Form_edit form = new Form_edit( info);
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                textBox_commandLine.Text = form.Info.commandLine;
-            }
-        }
-        private void button_folder_Click(object sender, EventArgs e)
-        {
-            folderBrowserDialog1.SelectedPath = textBox_exec_dir.Text;
-            if (folderBrowserDialog1.ShowDialog() != DialogResult.OK)
-            {
-                return;
-            }
-
-            string path = folderBrowserDialog1.SelectedPath;
-            if (radioButton_relativepath.Checked)
-            {
-                path = MakeRelativePath(textBox_exec_dir.Text + Path.DirectorySeparatorChar, path);
-            }
-            add_text(path);
-        }
-
-        // textBoxに文字列を挿入
-        private void add_text(string str)
-        {
-            textBox_commandLine.Text = textBox_commandLine.Text.Substring(0, textBox_commandLine.SelectionStart)
-                + str
-                + textBox_commandLine.Text.Substring(textBox_commandLine.SelectionStart + textBox_commandLine.SelectionLength);
-        }
-
-
-        private void button_file_Click(object sender, EventArgs e)
-        {
-            openFileDialog1.InitialDirectory = textBox_exec_dir.Text;
-            if (openFileDialog1.ShowDialog() != DialogResult.OK)
-                return;
-            string path = openFileDialog1.FileName;
-            if (radioButton_relativepath.Checked)
-            {
-                path = MakeRelativePath(textBox_exec_dir.Text + Path.DirectorySeparatorChar, path);
-            }
-            add_text(path);
-        }
-
-        private string get_commandLine()
-        {
-            return textBox_commandLine.Text.Replace(Environment.NewLine, " ");
-
-        }
-
-        public String MakeRelativePath(String fromPath, String toPath)
-        {
-            if (String.IsNullOrEmpty(fromPath)) throw new ArgumentNullException("fromPath");
-            if (String.IsNullOrEmpty(toPath)) throw new ArgumentNullException("toPath");
-
-            Uri fromUri = new Uri(fromPath);
-            Uri toUri = new Uri(toPath);
-
-            if (fromUri.Scheme != toUri.Scheme) { return toPath; } // path can't be made relative.
-
-            Uri relativeUri = fromUri.MakeRelativeUri(toUri);
-            String relativePath = Uri.UnescapeDataString(relativeUri.ToString());
-
-            if (toUri.Scheme.ToUpperInvariant() == "FILE")
-            {
-                relativePath = relativePath.Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar);
-            }
-
-            return relativePath;
-        }
-
+		public Form_main()
+		{
+			this.InitializeComponent();
+			this.load_infos();
+		}
+		private void load_infos()
+		{
+			if (File.Exists("infos.xml"))
+			{
+				try
+				{
+					XmlSerializer serializer = new XmlSerializer(typeof(List<ExecCommandInfo>));
+					StreamReader sr = new StreamReader("infos.xml", new UTF8Encoding(false));
+					this._infos = (List<ExecCommandInfo>)serializer.Deserialize(sr);
+					sr.Close();
+				}
+				catch (Exception e)
+				{
+					MessageBox.Show(e.Message);
+					return;
+				}
+				foreach (ExecCommandInfo info in this._infos)
+				{
+					this.comboBox_infos.Items.Add(info.name);
+				}
+			}
+		}
+		private void save_infos()
+		{
+			try
+			{
+				XmlSerializer serializer = new XmlSerializer(typeof(List<ExecCommandInfo>));
+				StreamWriter sw = new StreamWriter("infos.xml", false, new UTF8Encoding(false));
+				serializer.Serialize(sw, this._infos);
+				sw.Close();
+			}
+			catch (Exception e)
+			{
+				MessageBox.Show(e.Message);
+			}
+		}
+		private void Form_main_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			Settings.Default.Save();
+			this.save_infos();
+		}
+		private void button_exec_dir_Click(object sender, EventArgs e)
+		{
+			this.folderBrowserDialog1.SelectedPath = this.textBox_exec_dir.Text;
+			if (this.folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+			{
+				this.textBox_exec_dir.Text = this.folderBrowserDialog1.SelectedPath;
+			}
+		}
+		private void button_exec_Click(object sender, EventArgs e)
+		{
+			string commandline = this.get_commandLine();
+			int pos = commandline.IndexOf(" ");
+			string exe_file;
+			string args;
+			if (pos > 0)
+			{
+				exe_file = commandline.Substring(0, pos);
+				args = commandline.Substring(pos + 1);
+			}
+			else
+			{
+				exe_file = commandline;
+				args = "";
+			}
+			ProcessStartInfo psi = new ProcessStartInfo();
+			psi.RedirectStandardInput = false;
+			psi.RedirectStandardOutput = true;
+			psi.RedirectStandardError = true;
+			psi.UseShellExecute = false;
+			psi.CreateNoWindow = true;
+			psi.FileName = exe_file;
+			psi.Arguments = args;
+			psi.WorkingDirectory = this.textBox_exec_dir.Text;
+			Process p = null;
+			try
+			{
+				p = Process.Start(psi);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message);
+				return;
+			}
+			string stdout = p.StandardOutput.ReadToEnd();
+			string stderr = p.StandardError.ReadToEnd();
+			p.WaitForExit();
+			Form_output form = new Form_output(stdout + stderr);
+			form.ShowDialog();
+		}
+		private void button_folder_Click(object sender, EventArgs e)
+		{
+			this.folderBrowserDialog1.SelectedPath = this.textBox_exec_dir.Text;
+			if (this.folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+			{
+				string path = this.folderBrowserDialog1.SelectedPath;
+				if (this.radioButton_relativepath.Checked)
+				{
+					path = this.MakeRelativePath(this.textBox_exec_dir.Text + Path.DirectorySeparatorChar, path);
+				}
+				this.add_text(path);
+			}
+		}
+		private void add_text(string str)
+		{
+			this.textBox_commandLine.Text = this.textBox_commandLine.Text.Substring(0, this.textBox_commandLine.SelectionStart) + str + this.textBox_commandLine.Text.Substring(this.textBox_commandLine.SelectionStart + this.textBox_commandLine.SelectionLength);
+		}
+		private void button_file_Click(object sender, EventArgs e)
+		{
+			this.openFileDialog1.InitialDirectory = this.textBox_exec_dir.Text;
+			if (this.openFileDialog1.ShowDialog() == DialogResult.OK)
+			{
+				string path = this.openFileDialog1.FileName;
+				if (this.radioButton_relativepath.Checked)
+				{
+					path = this.MakeRelativePath(this.textBox_exec_dir.Text + Path.DirectorySeparatorChar, path);
+				}
+				this.add_text(path);
+			}
+		}
+		private string get_commandLine()
+		{
+			return this.textBox_commandLine.Text.Replace(Environment.NewLine, " ");
+		}
+		public string MakeRelativePath(string fromPath, string toPath)
+		{
+			if (string.IsNullOrEmpty(fromPath))
+			{
+				throw new ArgumentNullException("fromPath");
+			}
+			if (string.IsNullOrEmpty(toPath))
+			{
+				throw new ArgumentNullException("toPath");
+			}
+			Uri fromUri = new Uri(fromPath);
+			Uri toUri = new Uri(toPath);
+			string result;
+			if (fromUri.Scheme != toUri.Scheme)
+			{
+				result = toPath;
+			}
+			else
+			{
+				Uri relativeUri = fromUri.MakeRelativeUri(toUri);
+				string relativePath = Uri.UnescapeDataString(relativeUri.ToString());
+				if (toUri.Scheme.ToUpperInvariant() == "FILE")
+				{
+					relativePath = relativePath.Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar);
+				}
+				result = relativePath;
+			}
+			return result;
+		}
+		private void ToolStripMenuItem_font_Click(object sender, EventArgs e)
+		{
+			this.fontDialog1.Font = this.textBox_commandLine.Font;
+			if (this.fontDialog1.ShowDialog() == DialogResult.OK)
+			{
+				this.textBox_commandLine.Font = this.fontDialog1.Font;
+			}
+		}
+		private void button_save_info_Click(object sender, EventArgs e)
+		{
+			if (this.comboBox_infos.Text == "")
+			{
+				MessageBox.Show("名前を入力してください");
+				this.comboBox_infos.Focus();
+			}
+			else
+			{
+				ExecCommandInfo info = this.get_info_from_form();
+				this.add_info(info);
+			}
+		}
+		private ExecCommandInfo get_info_from_form()
+		{
+			return new ExecCommandInfo(this.comboBox_infos.Text, this.textBox_commandLine.Text, this.textBox_exec_dir.Text);
+		}
+		private void add_info(ExecCommandInfo info)
+		{
+			if (this._infos.Count == 0)
+			{
+				this._infos.Add(info);
+				this.comboBox_infos.Items.Add(info.name);
+			}
+			else
+			{
+				ExecCommandInfo obj = this._infos.FirstOrDefault((ExecCommandInfo elem) => elem.name == info.name);
+				if (obj == null)
+				{
+					this._infos.Add(info);
+					this.comboBox_infos.Items.Add(info.name);
+				}
+				else
+				{
+					obj = info;
+				}
+			}
+		}
+		private void disp_info(ExecCommandInfo info)
+		{
+			this.textBox_commandLine.Text = info.commandLine;
+			this.textBox_exec_dir.Text = info.exec_dir;
+		}
+		private void comboBox_infos_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (!(this.comboBox_infos.Text == ""))
+			{
+				string name = this.comboBox_infos.Text;
+				ExecCommandInfo info = this._infos.First((ExecCommandInfo elem) => elem.name == name);
+				this.disp_info(info);
+			}
+		}
     }
-
-
 }

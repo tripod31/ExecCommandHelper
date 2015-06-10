@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_main));
             this.label1 = new System.Windows.Forms.Label();
             this.button_exec = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItem_load = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItem_save = new System.Windows.Forms.ToolStripMenuItem();
+            this.設定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItem_font = new System.Windows.Forms.ToolStripMenuItem();
             this.button_exec_dir = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -46,14 +46,20 @@
             this.radioButton_fullpath = new System.Windows.Forms.RadioButton();
             this.button_file = new System.Windows.Forms.Button();
             this.radioButton_relativepath = new System.Windows.Forms.RadioButton();
+            this.fontDialog1 = new System.Windows.Forms.FontDialog();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.comboBox_infos = new System.Windows.Forms.ToolStripComboBox();
+            this.button_save_info = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 44);
+            this.label1.Location = new System.Drawing.Point(12, 63);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(284, 15);
             this.label1.TabIndex = 0;
@@ -62,7 +68,7 @@
             // button_exec
             // 
             this.button_exec.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_exec.Location = new System.Drawing.Point(22, 393);
+            this.button_exec.Location = new System.Drawing.Point(22, 397);
             this.button_exec.Name = "button_exec";
             this.button_exec.Size = new System.Drawing.Size(75, 23);
             this.button_exec.TabIndex = 3;
@@ -74,7 +80,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(19, 358);
+            this.label2.Location = new System.Drawing.Point(19, 362);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(98, 15);
             this.label2.TabIndex = 4;
@@ -84,40 +90,32 @@
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(19, 19);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
+            this.設定ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(815, 27);
+            this.menuStrip1.Size = new System.Drawing.Size(818, 27);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // toolStripMenuItem1
+            // 設定ToolStripMenuItem
             // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuItem_load,
-            this.ToolStripMenuItem_save});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(63, 23);
-            this.toolStripMenuItem1.Text = "ファイル";
+            this.設定ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuItem_font});
+            this.設定ToolStripMenuItem.Name = "設定ToolStripMenuItem";
+            this.設定ToolStripMenuItem.Size = new System.Drawing.Size(51, 23);
+            this.設定ToolStripMenuItem.Text = "設定";
             // 
-            // ToolStripMenuItem_load
+            // ToolStripMenuItem_font
             // 
-            this.ToolStripMenuItem_load.Name = "ToolStripMenuItem_load";
-            this.ToolStripMenuItem_load.Size = new System.Drawing.Size(108, 24);
-            this.ToolStripMenuItem_load.Text = "読込";
-            this.ToolStripMenuItem_load.Click += new System.EventHandler(this.ToolStripMenuItem_load_Click);
-            // 
-            // ToolStripMenuItem_save
-            // 
-            this.ToolStripMenuItem_save.Name = "ToolStripMenuItem_save";
-            this.ToolStripMenuItem_save.Size = new System.Drawing.Size(108, 24);
-            this.ToolStripMenuItem_save.Text = "保存";
-            this.ToolStripMenuItem_save.Click += new System.EventHandler(this.ToolStripMenuItem_save_Click);
+            this.ToolStripMenuItem_font.Name = "ToolStripMenuItem_font";
+            this.ToolStripMenuItem_font.Size = new System.Drawing.Size(120, 24);
+            this.ToolStripMenuItem_font.Text = "フォント";
+            this.ToolStripMenuItem_font.Click += new System.EventHandler(this.ToolStripMenuItem_font_Click);
             // 
             // button_exec_dir
             // 
             this.button_exec_dir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_exec_dir.Location = new System.Drawing.Point(754, 355);
+            this.button_exec_dir.Location = new System.Drawing.Point(764, 359);
             this.button_exec_dir.Name = "button_exec_dir";
             this.button_exec_dir.Size = new System.Drawing.Size(23, 23);
             this.button_exec_dir.TabIndex = 7;
@@ -134,9 +132,9 @@
             this.textBox_exec_dir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_exec_dir.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::ExecCommandHelper.Properties.Settings.Default, "exec_dir", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox_exec_dir.Location = new System.Drawing.Point(129, 355);
+            this.textBox_exec_dir.Location = new System.Drawing.Point(129, 359);
             this.textBox_exec_dir.Name = "textBox_exec_dir";
-            this.textBox_exec_dir.Size = new System.Drawing.Size(619, 21);
+            this.textBox_exec_dir.Size = new System.Drawing.Size(629, 21);
             this.textBox_exec_dir.TabIndex = 5;
             this.textBox_exec_dir.Text = global::ExecCommandHelper.Properties.Settings.Default.exec_dir;
             // 
@@ -146,10 +144,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_commandLine.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::ExecCommandHelper.Properties.Settings.Default, "CommandLine", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox_commandLine.Location = new System.Drawing.Point(22, 62);
+            this.textBox_commandLine.DataBindings.Add(new System.Windows.Forms.Binding("Font", global::ExecCommandHelper.Properties.Settings.Default, "font_commadline", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.textBox_commandLine.Font = global::ExecCommandHelper.Properties.Settings.Default.font_commadline;
+            this.textBox_commandLine.Location = new System.Drawing.Point(22, 91);
             this.textBox_commandLine.Multiline = true;
             this.textBox_commandLine.Name = "textBox_commandLine";
-            this.textBox_commandLine.Size = new System.Drawing.Size(752, 231);
+            this.textBox_commandLine.Size = new System.Drawing.Size(762, 197);
             this.textBox_commandLine.TabIndex = 1;
             this.textBox_commandLine.Text = global::ExecCommandHelper.Properties.Settings.Default.CommandLine;
             // 
@@ -160,7 +160,7 @@
             this.groupBox1.Controls.Add(this.radioButton_fullpath);
             this.groupBox1.Controls.Add(this.button_file);
             this.groupBox1.Controls.Add(this.radioButton_relativepath);
-            this.groupBox1.Location = new System.Drawing.Point(25, 299);
+            this.groupBox1.Location = new System.Drawing.Point(25, 303);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(342, 50);
             this.groupBox1.TabIndex = 8;
@@ -215,11 +215,48 @@
             this.radioButton_relativepath.Text = "相対パス";
             this.radioButton_relativepath.UseVisualStyleBackColor = true;
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(19, 19);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel1,
+            this.comboBox_infos,
+            this.button_save_info});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 27);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(818, 27);
+            this.toolStrip1.TabIndex = 12;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(69, 24);
+            this.toolStripLabel1.Text = "実行設定";
+            // 
+            // comboBox_infos
+            // 
+            this.comboBox_infos.Name = "comboBox_infos";
+            this.comboBox_infos.Size = new System.Drawing.Size(121, 27);
+            this.comboBox_infos.SelectedIndexChanged += new System.EventHandler(this.comboBox_infos_SelectedIndexChanged);
+            // 
+            // button_save_info
+            // 
+            this.button_save_info.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.button_save_info.Image = ((System.Drawing.Image)(resources.GetObject("button_save_info.Image")));
+            this.button_save_info.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.button_save_info.Name = "button_save_info";
+            this.button_save_info.Size = new System.Drawing.Size(43, 24);
+            this.button_save_info.Text = "保存";
+            this.button_save_info.Click += new System.EventHandler(this.button_save_info_Click);
+            // 
             // Form_main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = global::ExecCommandHelper.Properties.Settings.Default.main_size;
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button_exec_dir);
             this.Controls.Add(this.textBox_exec_dir);
@@ -239,6 +276,8 @@
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -252,9 +291,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox_exec_dir;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_load;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_save;
         private System.Windows.Forms.Button button_exec_dir;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
@@ -264,6 +300,13 @@
         private System.Windows.Forms.RadioButton radioButton_fullpath;
         private System.Windows.Forms.Button button_file;
         private System.Windows.Forms.RadioButton radioButton_relativepath;
+        private System.Windows.Forms.ToolStripMenuItem 設定ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_font;
+        private System.Windows.Forms.FontDialog fontDialog1;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripButton button_save_info;
+        private System.Windows.Forms.ToolStripComboBox comboBox_infos;
     }
 }
 
