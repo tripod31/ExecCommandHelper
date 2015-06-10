@@ -196,6 +196,7 @@ namespace ExecCommandHelper
 		{
 			return new ExecCommandInfo(this.comboBox_infos.Text, this.textBox_commandLine.Text, this.textBox_exec_dir.Text);
 		}
+
 		private void add_info(ExecCommandInfo info)
 		{
             _infoCtrl.add_info(info);
@@ -208,8 +209,8 @@ namespace ExecCommandHelper
 
 		private void disp_info(ExecCommandInfo info)
 		{
-			this.textBox_commandLine.Text = info.commandLine;
-			this.textBox_exec_dir.Text = info.exec_dir;
+			this.textBox_commandLine.Text = info.commandLine.Replace("\n", Environment.NewLine);
+            this.textBox_exec_dir.Text = info.exec_dir;
 		}
 
 		private void comboBox_infos_SelectedIndexChanged(object sender, EventArgs e)

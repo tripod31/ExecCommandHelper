@@ -132,19 +132,16 @@
             // 
             this.textBox_exec_dir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_exec_dir.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::ExecCommandHelper.Properties.Settings.Default, "exec_dir", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.textBox_exec_dir.Location = new System.Drawing.Point(129, 359);
             this.textBox_exec_dir.Name = "textBox_exec_dir";
             this.textBox_exec_dir.Size = new System.Drawing.Size(629, 21);
             this.textBox_exec_dir.TabIndex = 5;
-            this.textBox_exec_dir.Text = global::ExecCommandHelper.Properties.Settings.Default.exec_dir;
             // 
             // textBox_commandLine
             // 
             this.textBox_commandLine.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_commandLine.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::ExecCommandHelper.Properties.Settings.Default, "CommandLine", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.textBox_commandLine.DataBindings.Add(new System.Windows.Forms.Binding("Font", global::ExecCommandHelper.Properties.Settings.Default, "font_commadline", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.textBox_commandLine.Font = global::ExecCommandHelper.Properties.Settings.Default.font_commadline;
             this.textBox_commandLine.Location = new System.Drawing.Point(22, 91);
@@ -152,7 +149,6 @@
             this.textBox_commandLine.Name = "textBox_commandLine";
             this.textBox_commandLine.Size = new System.Drawing.Size(762, 197);
             this.textBox_commandLine.TabIndex = 1;
-            this.textBox_commandLine.Text = global::ExecCommandHelper.Properties.Settings.Default.CommandLine;
             // 
             // groupBox1
             // 
