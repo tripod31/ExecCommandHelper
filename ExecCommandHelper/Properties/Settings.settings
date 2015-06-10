@@ -6,13 +6,13 @@
       <Value Profile="(Default)">0, 0</Value>
     </Setting>
     <Setting Name="main_size" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">818, 490</Value>
+      <Value Profile="(Default)">836, 535</Value>
     </Setting>
     <Setting Name="relative_path" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="form_output_size" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">692, 387</Value>
+      <Value Profile="(Default)">728, 477</Value>
     </Setting>
     <Setting Name="font_commadline" Type="System.Drawing.Font" Scope="User">
       <Value Profile="(Default)">MS UI Gothic, 11.2695656pt</Value>

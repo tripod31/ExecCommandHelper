@@ -37,7 +37,7 @@ namespace ExecCommandHelper.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("818, 490")]
+        [global::System.Configuration.DefaultSettingValueAttribute("836, 535")]
         public global::System.Drawing.Size main_size {
             get {
                 return ((global::System.Drawing.Size)(this["main_size"]));
@@ -61,7 +61,7 @@ namespace ExecCommandHelper.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("692, 387")]
+        [global::System.Configuration.DefaultSettingValueAttribute("728, 477")]
         public global::System.Drawing.Size form_output_size {
             get {
                 return ((global::System.Drawing.Size)(this["form_output_size"]));

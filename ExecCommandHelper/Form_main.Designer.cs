@@ -72,7 +72,7 @@
             // button_exec
             // 
             this.button_exec.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_exec.Location = new System.Drawing.Point(22, 397);
+            this.button_exec.Location = new System.Drawing.Point(22, 356);
             this.button_exec.Name = "button_exec";
             this.button_exec.Size = new System.Drawing.Size(75, 23);
             this.button_exec.TabIndex = 3;
@@ -84,7 +84,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(19, 362);
+            this.label2.Location = new System.Drawing.Point(19, 321);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(98, 15);
             this.label2.TabIndex = 4;
@@ -97,7 +97,7 @@
             this.設定ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(818, 27);
+            this.menuStrip1.Size = new System.Drawing.Size(728, 27);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -119,7 +119,7 @@
             // button_exec_dir
             // 
             this.button_exec_dir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_exec_dir.Location = new System.Drawing.Point(764, 359);
+            this.button_exec_dir.Location = new System.Drawing.Point(656, 318);
             this.button_exec_dir.Name = "button_exec_dir";
             this.button_exec_dir.Size = new System.Drawing.Size(23, 23);
             this.button_exec_dir.TabIndex = 7;
@@ -135,9 +135,9 @@
             // 
             this.textBox_exec_dir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_exec_dir.Location = new System.Drawing.Point(129, 359);
+            this.textBox_exec_dir.Location = new System.Drawing.Point(129, 318);
             this.textBox_exec_dir.Name = "textBox_exec_dir";
-            this.textBox_exec_dir.Size = new System.Drawing.Size(629, 21);
+            this.textBox_exec_dir.Size = new System.Drawing.Size(521, 21);
             this.textBox_exec_dir.TabIndex = 5;
             // 
             // textBox_commandLine
@@ -150,7 +150,8 @@
             this.textBox_commandLine.Location = new System.Drawing.Point(22, 91);
             this.textBox_commandLine.Multiline = true;
             this.textBox_commandLine.Name = "textBox_commandLine";
-            this.textBox_commandLine.Size = new System.Drawing.Size(762, 197);
+            this.textBox_commandLine.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox_commandLine.Size = new System.Drawing.Size(654, 156);
             this.textBox_commandLine.TabIndex = 1;
             // 
             // groupBox1
@@ -160,7 +161,7 @@
             this.groupBox1.Controls.Add(this.radioButton_fullpath);
             this.groupBox1.Controls.Add(this.button_file);
             this.groupBox1.Controls.Add(this.radioButton_relativepath);
-            this.groupBox1.Location = new System.Drawing.Point(25, 303);
+            this.groupBox1.Location = new System.Drawing.Point(25, 262);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(342, 50);
             this.groupBox1.TabIndex = 8;
@@ -229,7 +230,7 @@
             this.button_oneline});
             this.toolStrip1.Location = new System.Drawing.Point(0, 27);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(818, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(728, 27);
             this.toolStrip1.TabIndex = 12;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -295,7 +296,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = global::ExecCommandHelper.Properties.Settings.Default.main_size;
+            this.ClientSize = new System.Drawing.Size(728, 494);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button_exec_dir);
@@ -306,7 +307,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::ExecCommandHelper.Properties.Settings.Default, "main_location", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::ExecCommandHelper.Properties.Settings.Default, "main_size", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.Location = global::ExecCommandHelper.Properties.Settings.Default.main_location;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form_main";
