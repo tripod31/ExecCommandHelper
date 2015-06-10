@@ -170,7 +170,7 @@
             // button_folder
             // 
             this.button_folder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_folder.Location = new System.Drawing.Point(6, 18);
+            this.button_folder.Location = new System.Drawing.Point(6, 21);
             this.button_folder.Name = "button_folder";
             this.button_folder.Size = new System.Drawing.Size(75, 23);
             this.button_folder.TabIndex = 1;
@@ -193,7 +193,7 @@
             // button_file
             // 
             this.button_file.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_file.Location = new System.Drawing.Point(87, 20);
+            this.button_file.Location = new System.Drawing.Point(87, 21);
             this.button_file.Name = "button_file";
             this.button_file.Size = new System.Drawing.Size(75, 23);
             this.button_file.TabIndex = 2;
@@ -207,7 +207,7 @@
             this.radioButton_relativepath.AutoSize = true;
             this.radioButton_relativepath.Checked = global::ExecCommandHelper.Properties.Settings.Default.relative_path;
             this.radioButton_relativepath.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ExecCommandHelper.Properties.Settings.Default, "relative_path", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.radioButton_relativepath.Location = new System.Drawing.Point(168, 22);
+            this.radioButton_relativepath.Location = new System.Drawing.Point(168, 23);
             this.radioButton_relativepath.Name = "radioButton_relativepath";
             this.radioButton_relativepath.Size = new System.Drawing.Size(78, 19);
             this.radioButton_relativepath.TabIndex = 3;
@@ -241,6 +241,7 @@
             // 
             // comboBox_infos
             // 
+            this.comboBox_infos.DropDownWidth = 200;
             this.comboBox_infos.Name = "comboBox_infos";
             this.comboBox_infos.Size = new System.Drawing.Size(121, 27);
             this.comboBox_infos.SelectedIndexChanged += new System.EventHandler(this.comboBox_infos_SelectedIndexChanged);
