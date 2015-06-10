@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace ExecCommandHelper
 {
+    public class ExecCommandInfoCtrl
+    {
+
+    }
+
     public class ExecCommandInfo
     {
         private string _name;

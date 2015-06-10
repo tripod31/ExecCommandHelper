@@ -201,15 +201,6 @@ namespace ExecCommandHelper
 		}
 		private void add_info(ExecCommandInfo info)
 		{
-            /*
-			if (this._infos.Count == 0)
-			{
-				this._infos.Add(info);
-				this.comboBox_infos.Items.Add(info.name);
-			}
-			else
-			{
-            */
 			ExecCommandInfo obj = this._infos.FirstOrDefault((ExecCommandInfo elem) => elem.name == info.name);
 			if (obj == null)
 			{
