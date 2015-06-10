@@ -51,7 +51,7 @@
             this.button_ok.Name = "button_ok";
             this.button_ok.Size = new System.Drawing.Size(75, 23);
             this.button_ok.TabIndex = 1;
-            this.button_ok.Text = "OK";
+            this.button_ok.Text = "閉じる";
             this.button_ok.UseVisualStyleBackColor = true;
             // 
             // Form_output

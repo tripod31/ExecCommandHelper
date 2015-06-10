@@ -2,20 +2,11 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ExecCommandHelper.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="CommandLine" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="exec_dir" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
     <Setting Name="main_location" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">0, 0</Value>
     </Setting>
     <Setting Name="main_size" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">818, 490</Value>
-    </Setting>
-    <Setting Name="edit_size" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">786, 550</Value>
     </Setting>
     <Setting Name="relative_path" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -26,7 +17,7 @@
     <Setting Name="font_commadline" Type="System.Drawing.Font" Scope="User">
       <Value Profile="(Default)">MS UI Gothic, 11.2695656pt</Value>
     </Setting>
-    <Setting Name="cur_info" Type="System.String" Scope="User">
+    <Setting Name="selected_info" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

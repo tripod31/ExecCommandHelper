@@ -25,30 +25,6 @@ namespace ExecCommandHelper.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string CommandLine {
-            get {
-                return ((string)(this["CommandLine"]));
-            }
-            set {
-                this["CommandLine"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string exec_dir {
-            get {
-                return ((string)(this["exec_dir"]));
-            }
-            set {
-                this["exec_dir"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
         public global::System.Drawing.Point main_location {
             get {
@@ -68,18 +44,6 @@ namespace ExecCommandHelper.Properties {
             }
             set {
                 this["main_size"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("786, 550")]
-        public global::System.Drawing.Size edit_size {
-            get {
-                return ((global::System.Drawing.Size)(this["edit_size"]));
-            }
-            set {
-                this["edit_size"] = value;
             }
         }
         
@@ -122,12 +86,12 @@ namespace ExecCommandHelper.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string cur_info {
+        public string selected_info {
             get {
-                return ((string)(this["cur_info"]));
+                return ((string)(this["selected_info"]));
             }
             set {
-                this["cur_info"] = value;
+                this["selected_info"] = value;
             }
         }
     }

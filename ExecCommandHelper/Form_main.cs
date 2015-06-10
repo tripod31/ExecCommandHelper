@@ -20,6 +20,13 @@ namespace ExecCommandHelper
 		{
 			this.InitializeComponent();
 			this.load_infos();
+            string selected_info = Properties.Settings.Default.selected_info;
+            if (comboBox_infos.Items.Contains(selected_info))
+            {
+                comboBox_infos.Text = selected_info;
+                ExecCommandInfo info = _infoCtrl.get_info(selected_info);
+                this.disp_info(info);
+            }
 		}
 
 		private void load_infos()
@@ -56,6 +63,7 @@ namespace ExecCommandHelper
 
 		private void Form_main_FormClosing(object sender, FormClosingEventArgs e)
 		{
+            Properties.Settings.Default.selected_info = comboBox_infos.Text;
 			Settings.Default.Save();
 			this.save_infos();
 		}
