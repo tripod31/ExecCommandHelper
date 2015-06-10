@@ -51,6 +51,7 @@
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.comboBox_infos = new System.Windows.Forms.ToolStripComboBox();
             this.button_save_info = new System.Windows.Forms.ToolStripButton();
+            this.button_delete_info = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -222,7 +223,8 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel1,
             this.comboBox_infos,
-            this.button_save_info});
+            this.button_save_info,
+            this.button_delete_info});
             this.toolStrip1.Location = new System.Drawing.Point(0, 27);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(818, 27);
@@ -250,6 +252,16 @@
             this.button_save_info.Size = new System.Drawing.Size(43, 24);
             this.button_save_info.Text = "保存";
             this.button_save_info.Click += new System.EventHandler(this.button_save_info_Click);
+            // 
+            // button_delete_info
+            // 
+            this.button_delete_info.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.button_delete_info.Image = ((System.Drawing.Image)(resources.GetObject("button_delete_info.Image")));
+            this.button_delete_info.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.button_delete_info.Name = "button_delete_info";
+            this.button_delete_info.Size = new System.Drawing.Size(43, 24);
+            this.button_delete_info.Text = "削除";
+            this.button_delete_info.Click += new System.EventHandler(this.button_delete_info_Click);
             // 
             // Form_main
             // 
@@ -307,6 +319,7 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripButton button_save_info;
         private System.Windows.Forms.ToolStripComboBox comboBox_infos;
+        private System.Windows.Forms.ToolStripButton button_delete_info;
     }
 }
 

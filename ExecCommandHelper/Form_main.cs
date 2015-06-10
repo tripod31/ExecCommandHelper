@@ -201,6 +201,7 @@ namespace ExecCommandHelper
 		}
 		private void add_info(ExecCommandInfo info)
 		{
+            /*
 			if (this._infos.Count == 0)
 			{
 				this._infos.Add(info);
@@ -208,17 +209,18 @@ namespace ExecCommandHelper
 			}
 			else
 			{
-				ExecCommandInfo obj = this._infos.FirstOrDefault((ExecCommandInfo elem) => elem.name == info.name);
-				if (obj == null)
-				{
-					this._infos.Add(info);
-					this.comboBox_infos.Items.Add(info.name);
-				}
-				else
-				{
-					obj = info;
-				}
+            */
+			ExecCommandInfo obj = this._infos.FirstOrDefault((ExecCommandInfo elem) => elem.name == info.name);
+			if (obj == null)
+			{
+				this._infos.Add(info);
+				this.comboBox_infos.Items.Add(info.name);
 			}
+			else
+			{
+				obj.copy(info);
+			}
+			
 		}
 		private void disp_info(ExecCommandInfo info)
 		{
@@ -234,5 +236,20 @@ namespace ExecCommandHelper
 				this.disp_info(info);
 			}
 		}
+
+        private void button_delete_info_Click(object sender, EventArgs e)
+        {
+            if (this.comboBox_infos.Text == "")
+            {
+                return;
+            }
+            string name = comboBox_infos.Text; 
+            ExecCommandInfo obj = this._infos.FirstOrDefault((ExecCommandInfo elem) => elem.name == name);
+            if (obj != null)
+            {
+                _infos.Remove(obj);
+                comboBox_infos.Items.Remove(name);
+            }
+        }
     }
 }
