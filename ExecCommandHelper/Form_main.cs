@@ -4,59 +4,56 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.IO;
+
 namespace ExecCommandHelper
 {
 	public partial class Form_main : Form
 	{
 		private const string XML_FILE = "infos.xml";
-		private List<ExecCommandInfo> _infos = new List<ExecCommandInfo>();
+        private ExecCommandInfoCtrl _infoCtrl = new ExecCommandInfoCtrl();
 
 		public Form_main()
 		{
 			this.InitializeComponent();
 			this.load_infos();
 		}
+
 		private void load_infos()
 		{
-			if (File.Exists("infos.xml"))
+			if (File.Exists(XML_FILE))
 			{
 				try
 				{
-					XmlSerializer serializer = new XmlSerializer(typeof(List<ExecCommandInfo>));
-					StreamReader sr = new StreamReader("infos.xml", new UTF8Encoding(false));
-					this._infos = (List<ExecCommandInfo>)serializer.Deserialize(sr);
-					sr.Close();
+                    _infoCtrl.save_infos(XML_FILE);
 				}
 				catch (Exception e)
 				{
 					MessageBox.Show(e.Message);
 					return;
 				}
-				foreach (ExecCommandInfo info in this._infos)
+				foreach (ExecCommandInfo info in _infoCtrl.Infos)
 				{
 					this.comboBox_infos.Items.Add(info.name);
 				}
 			}
 		}
+
 		private void save_infos()
 		{
 			try
 			{
-				XmlSerializer serializer = new XmlSerializer(typeof(List<ExecCommandInfo>));
-				StreamWriter sw = new StreamWriter("infos.xml", false, new UTF8Encoding(false));
-				serializer.Serialize(sw, this._infos);
-				sw.Close();
+                _infoCtrl.save_infos(XML_FILE);
 			}
 			catch (Exception e)
 			{
 				MessageBox.Show(e.Message);
 			}
 		}
+
 		private void Form_main_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			Settings.Default.Save();
@@ -201,29 +198,26 @@ namespace ExecCommandHelper
 		}
 		private void add_info(ExecCommandInfo info)
 		{
-			ExecCommandInfo obj = this._infos.FirstOrDefault((ExecCommandInfo elem) => elem.name == info.name);
-			if (obj == null)
-			{
-				this._infos.Add(info);
-				this.comboBox_infos.Items.Add(info.name);
-			}
-			else
-			{
-				obj.copy(info);
-			}
-			
+            _infoCtrl.add_info(info);
+            if (!comboBox_infos.Items.Contains(info.name))
+            {
+                comboBox_infos.Items.Add(info.name);
+            }
+						
 		}
+
 		private void disp_info(ExecCommandInfo info)
 		{
 			this.textBox_commandLine.Text = info.commandLine;
 			this.textBox_exec_dir.Text = info.exec_dir;
 		}
+
 		private void comboBox_infos_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (!(this.comboBox_infos.Text == ""))
 			{
 				string name = this.comboBox_infos.Text;
-				ExecCommandInfo info = this._infos.First((ExecCommandInfo elem) => elem.name == name);
+				ExecCommandInfo info = _infoCtrl.get_info(name);
 				this.disp_info(info);
 			}
 		}
@@ -234,13 +228,9 @@ namespace ExecCommandHelper
             {
                 return;
             }
-            string name = comboBox_infos.Text; 
-            ExecCommandInfo obj = this._infos.FirstOrDefault((ExecCommandInfo elem) => elem.name == name);
-            if (obj != null)
-            {
-                _infos.Remove(obj);
-                comboBox_infos.Items.Remove(name);
-            }
+            string name = comboBox_infos.Text;
+            _infoCtrl.delete_info(name);
+            comboBox_infos.Items.Remove(name);
         }
     }
 }
