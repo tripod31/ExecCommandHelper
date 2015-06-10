@@ -28,7 +28,7 @@ namespace ExecCommandHelper
 			{
 				try
 				{
-                    _infoCtrl.save_infos(XML_FILE);
+                    _infoCtrl.load_infos(XML_FILE);
 				}
 				catch (Exception e)
 				{
