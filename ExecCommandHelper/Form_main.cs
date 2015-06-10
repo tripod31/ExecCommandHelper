@@ -19,14 +19,7 @@ namespace ExecCommandHelper
 		public Form_main()
 		{
 			this.InitializeComponent();
-			this.load_infos();
-            string selected_info = Properties.Settings.Default.selected_info;
-            if (comboBox_infos.Items.Contains(selected_info))
-            {
-                comboBox_infos.Text = selected_info;
-                ExecCommandInfo info = _infoCtrl.get_info(selected_info);
-                this.disp_info(info);
-            }
+
 		}
 
 		private void load_infos()
@@ -256,6 +249,19 @@ namespace ExecCommandHelper
         {
             textBox_commandLine.Text = System.Text.RegularExpressions.Regex.Replace(
                 textBox_commandLine.Text, "[\r\n]+", " ");         
+        }
+
+        private void Form_main_Load(object sender, EventArgs e)
+        {
+            this.load_infos();
+            string selected_info = Properties.Settings.Default.selected_info;
+            if (comboBox_infos.Items.Contains(selected_info))
+            {
+                comboBox_infos.Text = selected_info;
+                ExecCommandInfo info = _infoCtrl.get_info(selected_info);
+                this.disp_info(info);
+            }
+            textBox_commandLine.SelectionStart = 0;
         }
 
     }

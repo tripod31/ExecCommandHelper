@@ -312,6 +312,7 @@
             this.Name = "Form_main";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_main_FormClosing);
+            this.Load += new System.EventHandler(this.Form_main_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
