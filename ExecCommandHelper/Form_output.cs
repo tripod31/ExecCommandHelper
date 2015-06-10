@@ -23,6 +23,14 @@ namespace ExecCommandHelper
         {
             textBox1.Text = _str;
             textBox1.SelectionStart = 0;
+            this.Size = Properties.Settings.Default.form_output_size;   // databindingするとおかしくなる
         }
+
+        private void Form_output_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.form_output_size = this.Size;
+        }
+
+
     }
 }

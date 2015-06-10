@@ -56,6 +56,7 @@ namespace ExecCommandHelper
 
 		private void Form_main_FormClosing(object sender, FormClosingEventArgs e)
 		{
+            Properties.Settings.Default.main_size = this.Size;
             Properties.Settings.Default.selected_info = comboBox_infos.Text;
 			Settings.Default.Save();
 			this.save_infos();
@@ -262,6 +263,7 @@ namespace ExecCommandHelper
                 this.disp_info(info);
             }
             textBox_commandLine.SelectionStart = 0;
+            this.Size = Properties.Settings.Default.main_size;   // databindingするとおかしくなる
         }
 
     }
