@@ -52,6 +52,9 @@
             this.comboBox_infos = new System.Windows.Forms.ToolStripComboBox();
             this.button_save_info = new System.Windows.Forms.ToolStripButton();
             this.button_delete_info = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.button_multiline = new System.Windows.Forms.ToolStripButton();
+            this.button_oneline = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -220,7 +223,10 @@
             this.toolStripLabel1,
             this.comboBox_infos,
             this.button_save_info,
-            this.button_delete_info});
+            this.button_delete_info,
+            this.toolStripSeparator1,
+            this.button_multiline,
+            this.button_oneline});
             this.toolStrip1.Location = new System.Drawing.Point(0, 27);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(818, 27);
@@ -258,6 +264,31 @@
             this.button_delete_info.Size = new System.Drawing.Size(43, 24);
             this.button_delete_info.Text = "削除";
             this.button_delete_info.Click += new System.EventHandler(this.button_delete_info_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            // 
+            // button_multiline
+            // 
+            this.button_multiline.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.button_multiline.Image = ((System.Drawing.Image)(resources.GetObject("button_multiline.Image")));
+            this.button_multiline.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.button_multiline.Name = "button_multiline";
+            this.button_multiline.Size = new System.Drawing.Size(43, 24);
+            this.button_multiline.Text = "改行";
+            this.button_multiline.Click += new System.EventHandler(this.button_multiline_Click);
+            // 
+            // button_oneline
+            // 
+            this.button_oneline.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.button_oneline.Image = ((System.Drawing.Image)(resources.GetObject("button_oneline.Image")));
+            this.button_oneline.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.button_oneline.Name = "button_oneline";
+            this.button_oneline.Size = new System.Drawing.Size(43, 24);
+            this.button_oneline.Text = "一行";
+            this.button_oneline.Click += new System.EventHandler(this.button_oneline_Click);
             // 
             // Form_main
             // 
@@ -316,6 +347,9 @@
         private System.Windows.Forms.ToolStripButton button_save_info;
         private System.Windows.Forms.ToolStripComboBox comboBox_infos;
         private System.Windows.Forms.ToolStripButton button_delete_info;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton button_multiline;
+        private System.Windows.Forms.ToolStripButton button_oneline;
     }
 }
 

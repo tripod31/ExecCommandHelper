@@ -233,5 +233,22 @@ namespace ExecCommandHelper
             _infoCtrl.delete_info(name);
             comboBox_infos.Items.Remove(name);
         }
+
+        private void button_multiline_Click(object sender, EventArgs e)
+        {
+            string str = textBox_commandLine.Text;
+            str = System.Text.RegularExpressions.Regex.Replace(
+                str, "[\r\n]+", " ");
+            str = System.Text.RegularExpressions.Regex.Replace(
+                str, " +", Environment.NewLine);
+            textBox_commandLine.Text = str;
+        }
+
+        private void button_oneline_Click(object sender, EventArgs e)
+        {
+            textBox_commandLine.Text = System.Text.RegularExpressions.Regex.Replace(
+                textBox_commandLine.Text, "[\r\n]+", " ");         
+        }
+
     }
 }
