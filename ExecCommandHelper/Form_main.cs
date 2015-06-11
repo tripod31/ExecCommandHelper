@@ -69,6 +69,7 @@ namespace ExecCommandHelper
 				this.textBox_exec_dir.Text = this.folderBrowserDialog1.SelectedPath;
 			}
 		}
+
 		private void button_exec_Click(object sender, EventArgs e)
 		{
 			string commandline = this.get_commandLine();
@@ -85,6 +86,7 @@ namespace ExecCommandHelper
 				exe_file = commandline;
 				args = "";
 			}
+
 			ProcessStartInfo psi = new ProcessStartInfo();
 			psi.RedirectStandardInput = false;
 			psi.RedirectStandardOutput = true;
@@ -95,21 +97,31 @@ namespace ExecCommandHelper
 			psi.Arguments = args;
 			psi.WorkingDirectory = this.textBox_exec_dir.Text;
 			Process p = null;
+            string stdout = "";
+            string stderr = "";
+            this.Cursor = Cursors.WaitCursor;
 			try
 			{
 				p = Process.Start(psi);
+			    stdout = p.StandardOutput.ReadToEnd();
+			    stderr = p.StandardError.ReadToEnd();
+			    p.WaitForExit();
 			}
-			catch (Exception ex)
+            catch (Exception ex)
 			{
 				MessageBox.Show(ex.Message);
 				return;
 			}
-			string stdout = p.StandardOutput.ReadToEnd();
-			string stderr = p.StandardError.ReadToEnd();
-			p.WaitForExit();
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
+
 			Form_output form = new Form_output(stdout + stderr);
 			form.ShowDialog();
 		}
+
+
 		private void button_folder_Click(object sender, EventArgs e)
 		{
 			this.folderBrowserDialog1.SelectedPath = this.textBox_exec_dir.Text;
