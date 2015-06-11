@@ -23,8 +23,7 @@ namespace ExecCommandHelper
 
         public ExecCommandInfo get_info(string name)
         {
-            return _infos.First((ExecCommandInfo elem) => elem.name == name);
-
+            return _infos.FirstOrDefault((ExecCommandInfo elem) => elem.name == name);
         }
 
         public void add_info(ExecCommandInfo info)

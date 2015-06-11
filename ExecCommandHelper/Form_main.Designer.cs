@@ -56,6 +56,7 @@
             this.button_multiline = new System.Windows.Forms.ToolStripButton();
             this.button_oneline = new System.Windows.Forms.ToolStripButton();
             this.button_abort = new System.Windows.Forms.Button();
+            this.button_read_info = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -224,6 +225,7 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel1,
             this.comboBox_infos,
+            this.button_read_info,
             this.button_save_info,
             this.button_delete_info,
             this.toolStripSeparator1,
@@ -304,6 +306,16 @@
             this.button_abort.UseVisualStyleBackColor = true;
             this.button_abort.Click += new System.EventHandler(this.button_abort_Click);
             // 
+            // button_read_info
+            // 
+            this.button_read_info.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.button_read_info.Image = ((System.Drawing.Image)(resources.GetObject("button_read_info.Image")));
+            this.button_read_info.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.button_read_info.Name = "button_read_info";
+            this.button_read_info.Size = new System.Drawing.Size(43, 24);
+            this.button_read_info.Text = "読込";
+            this.button_read_info.Click += new System.EventHandler(this.button_read_info_Click);
+            // 
             // Form_main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -366,6 +378,7 @@
         private System.Windows.Forms.ToolStripButton button_multiline;
         private System.Windows.Forms.ToolStripButton button_oneline;
         private System.Windows.Forms.Button button_abort;
+        private System.Windows.Forms.ToolStripButton button_read_info;
     }
 }
 

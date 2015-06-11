@@ -193,16 +193,25 @@ namespace ExecCommandHelper
 		}
 		private void button_save_info_Click(object sender, EventArgs e)
 		{
-			if (this.comboBox_infos.Text == "")
+            string name = comboBox_infos.Text;
+			if ( name=="")
 			{
 				MessageBox.Show("名前を入力してください");
 				this.comboBox_infos.Focus();
+                return;
 			}
-			else
-			{
-				ExecCommandInfo info = this.get_info_from_form();
-				this.add_info(info);
-			}
+			
+			ExecCommandInfo info_form = this.get_info_from_form();
+            ExecCommandInfo info = _infoCtrl.get_info(name);
+            if (info != null)
+            {
+                if (MessageBox.Show(string.Format("{0}:上書きします", name), "保存", MessageBoxButtons.OKCancel) != DialogResult.OK)
+                {
+                    return;
+                }
+            }
+            this.add_info(info_form);
+			
 		}
 		private ExecCommandInfo get_info_from_form()
 		{
@@ -227,13 +236,18 @@ namespace ExecCommandHelper
 
 		private void comboBox_infos_SelectedIndexChanged(object sender, EventArgs e)
 		{
+            disp_selected_info();
+		}
+
+        private void disp_selected_info()
+        {
 			if (!(this.comboBox_infos.Text == ""))
 			{
 				string name = this.comboBox_infos.Text;
 				ExecCommandInfo info = _infoCtrl.get_info(name);
 				this.disp_info(info);
 			}
-		}
+        }
 
         private void button_delete_info_Click(object sender, EventArgs e)
         {
@@ -242,8 +256,15 @@ namespace ExecCommandHelper
                 return;
             }
             string name = comboBox_infos.Text;
-            _infoCtrl.delete_info(name);
-            comboBox_infos.Items.Remove(name);
+            if (MessageBox.Show(string.Format("{0}:削除します",name), "削除", MessageBoxButtons.OKCancel) == DialogResult.OK) 
+            {
+                _infoCtrl.delete_info(name);
+                comboBox_infos.Items.Remove(name);
+                if (comboBox_infos.Items.Count > 0)
+                {
+                    comboBox_infos.SelectedIndex = 0;
+                }
+            }
         }
 
         private void button_multiline_Click(object sender, EventArgs e)
@@ -274,6 +295,11 @@ namespace ExecCommandHelper
             }
             textBox_commandLine.SelectionStart = 0;
             this.Size = Properties.Settings.Default.main_size;   // databindingするとおかしくなる
+        }
+
+        private void button_read_info_Click(object sender, EventArgs e)
+        {
+            disp_selected_info();
         }
 
 
