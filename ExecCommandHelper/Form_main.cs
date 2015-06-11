@@ -205,13 +205,15 @@ namespace ExecCommandHelper
             ExecCommandInfo info = _infoCtrl.get_info(name);
             if (info != null)
             {
-                if (MessageBox.Show(string.Format("{0}:上書きします", name), "保存", MessageBoxButtons.OKCancel) != DialogResult.OK)
+                if (MessageBox.Show(string.Format("{0}:上書きします", name), "保存", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
-                    return;
+                    this._infoCtrl.save_info(info_form);
                 }
             }
-            this.add_info(info_form);
-			
+            else
+            {
+                this.add_info(info_form);
+            }
 		}
 		private ExecCommandInfo get_info_from_form()
 		{

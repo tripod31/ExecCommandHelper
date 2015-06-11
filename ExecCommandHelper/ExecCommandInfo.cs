@@ -26,6 +26,19 @@ namespace ExecCommandHelper
             return _infos.FirstOrDefault((ExecCommandInfo elem) => elem.name == name);
         }
 
+        public void save_info(ExecCommandInfo info)
+        {
+            ExecCommandInfo obj = this._infos.FirstOrDefault((ExecCommandInfo elem) => elem.name == info.name);
+            if (obj == null)
+            {
+                throw new Exception(string.Format("{0}:存在しません", info.name));
+            }
+            else
+            {
+                obj.copy(info);
+            }
+        }
+
         public void add_info(ExecCommandInfo info)
         {
             ExecCommandInfo obj = this._infos.FirstOrDefault((ExecCommandInfo elem) => elem.name == info.name);
@@ -35,7 +48,7 @@ namespace ExecCommandHelper
             }
             else
             {
-                obj.copy(info);
+                throw new Exception(string.Format("{0}:存在します", info.name));
             }
 
         }
