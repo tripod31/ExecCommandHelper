@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExecCommand.cs" />
     <Compile Include="ExecCommandInfo.cs" />
     <Compile Include="Form_main.cs">
       <SubType>Form</SubType>
