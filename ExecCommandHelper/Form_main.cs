@@ -17,8 +17,6 @@ namespace ExecCommandHelper
 	{
 		private const string XML_FILE = "infos.xml";
         private ExecCommandInfoCtrl _infoCtrl = new ExecCommandInfoCtrl();
-        private Task _task=null;
-        private CancellationTokenSource _cts=null;
 
 		public Form_main()
 		{
@@ -88,25 +86,18 @@ namespace ExecCommandHelper
 
             int ret = 0;
             
-            _cts = new CancellationTokenSource();
-            CancellationToken ct = _cts.Token;
+            ret = ExecCommand(exe_file, args, exec_dir, out stdout, out stderr, out errmsg);
 
-            this._task =  Task.Factory.StartNew(() =>
+            this.Cursor = Cursors.Default;
+            if (ret == 0)
             {
-                ret = ExecCommand(exe_file, args, exec_dir, out stdout, out stderr, out errmsg);
-
-                this.Cursor = Cursors.Default;
-                if (ret == 0)
-                {
-                    Form_output form = new Form_output(stdout + stderr);
-                    form.ShowDialog();
-                }
-                else
-                {
-                    MessageBox.Show(errmsg);
-                }
-            },ct,TaskCreationOptions.None,TaskScheduler.FromCurrentSynchronizationContext());
-            
+                Form_output form = new Form_output(stdout + stderr);
+                form.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show(errmsg);
+            }
             
         }
 
@@ -147,10 +138,6 @@ namespace ExecCommandHelper
         }
         private void button_abort_Click(object sender, EventArgs e)
         {
-            if (_task != null && _task.Status == TaskStatus.Running)
-            {
-                _cts.Cancel();
-            }
         }
         private void button_exec_dir_Click(object sender, EventArgs e)
         {
