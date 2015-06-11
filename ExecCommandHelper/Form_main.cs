@@ -87,26 +87,12 @@ namespace ExecCommandHelper
 				args = "";
 			}
 
-			ProcessStartInfo psi = new ProcessStartInfo();
-			psi.RedirectStandardInput = false;
-			psi.RedirectStandardOutput = true;
-			psi.RedirectStandardError = true;
-			psi.UseShellExecute = false;
-			psi.CreateNoWindow = true;
-			psi.FileName = exe_file;
-			psi.Arguments = args;
-			psi.WorkingDirectory = this.textBox_exec_dir.Text;
-			Process p = null;
-            string stdout = "";
-            string stderr = "";
             this.Cursor = Cursors.WaitCursor;
+            string stdout,stderr;
 			try
 			{
-				p = Process.Start(psi);
-			    stdout = p.StandardOutput.ReadToEnd();
-			    stderr = p.StandardError.ReadToEnd();
-			    p.WaitForExit();
-			}
+                ExecCommand(exe_file, args, this.textBox_exec_dir.Text, out stdout, out stderr);
+            }
             catch (Exception ex)
 			{
 				MessageBox.Show(ex.Message);
@@ -120,7 +106,27 @@ namespace ExecCommandHelper
 			Form_output form = new Form_output(stdout + stderr);
 			form.ShowDialog();
 		}
+        private void ExecCommand(string exe_file, string args, string exec_dir, out string stdout, out string stderr)
+        {
+            ProcessStartInfo psi = new ProcessStartInfo();
+            psi.RedirectStandardInput = false;
+            psi.RedirectStandardOutput = true;
+            psi.RedirectStandardError = true;
+            psi.UseShellExecute = false;
+            psi.CreateNoWindow = true;
+            psi.FileName = exe_file;
+            psi.Arguments = args;
+            psi.WorkingDirectory = exec_dir;
+            Process p = null;
+            stdout = "";
+            stderr = "";
+            this.Cursor = Cursors.WaitCursor;
+            p = Process.Start(psi);
+            stdout = p.StandardOutput.ReadToEnd();
+            stderr = p.StandardError.ReadToEnd();
+            p.WaitForExit();
 
+        }
 
 		private void button_folder_Click(object sender, EventArgs e)
 		{
