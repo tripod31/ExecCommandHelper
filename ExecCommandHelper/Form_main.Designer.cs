@@ -55,6 +55,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.button_multiline = new System.Windows.Forms.ToolStripButton();
             this.button_oneline = new System.Windows.Forms.ToolStripButton();
+            this.button_abort = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -292,11 +293,23 @@
             this.button_oneline.Text = "一行";
             this.button_oneline.Click += new System.EventHandler(this.button_oneline_Click);
             // 
+            // button_abort
+            // 
+            this.button_abort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button_abort.Location = new System.Drawing.Point(112, 356);
+            this.button_abort.Name = "button_abort";
+            this.button_abort.Size = new System.Drawing.Size(75, 23);
+            this.button_abort.TabIndex = 13;
+            this.button_abort.Text = "中断";
+            this.button_abort.UseVisualStyleBackColor = true;
+            this.button_abort.Click += new System.EventHandler(this.button_abort_Click);
+            // 
             // Form_main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(728, 494);
+            this.Controls.Add(this.button_abort);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button_exec_dir);
@@ -352,6 +365,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton button_multiline;
         private System.Windows.Forms.ToolStripButton button_oneline;
+        private System.Windows.Forms.Button button_abort;
     }
 }
 
