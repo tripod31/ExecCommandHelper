@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace ExecCommandHelper
 {
@@ -72,36 +74,47 @@ namespace ExecCommandHelper
 
 		private void button_exec_Click(object sender, EventArgs e)
 		{
-			string commandline = this.get_commandLine();
-			int pos = commandline.IndexOf(" ");
-			string exe_file;
-			string args;
-			if (pos > 0)
-			{
-				exe_file = commandline.Substring(0, pos);
-				args = commandline.Substring(pos + 1);
-			}
-			else
-			{
-				exe_file = commandline;
-				args = "";
-			}
-
             this.Cursor = Cursors.WaitCursor;
-            string stdout,stderr,errmsg;
-            int ret=ExecCommand(exe_file, args, this.textBox_exec_dir.Text, out stdout, out stderr, out errmsg);
-            this.Cursor = Cursors.Default;
-            if (ret == 0)
+            string commandline = this.get_commandLine();
+            int pos = commandline.IndexOf(" ");
+            string exe_file;
+            string args;
+            if (pos > 0)
             {
-                Form_output form = new Form_output(stdout + stderr);
-                form.ShowDialog();
+                exe_file = commandline.Substring(0, pos);
+                args = commandline.Substring(pos + 1);
             }
             else
             {
-                MessageBox.Show(errmsg);
+                exe_file = commandline;
+                args = "";
             }
+            string exec_dir = textBox_exec_dir.Text,stdout = "", stderr = "", errmsg = "";
 
-		}
+            int ret = 0;
+            
+            var ts = new CancellationTokenSource();
+            CancellationToken ct = ts.Token;
+
+            Task task =  Task.Factory.StartNew(() =>
+            {
+                ret = ExecCommand(exe_file, args, exec_dir, out stdout, out stderr, out errmsg);
+
+                this.Cursor = Cursors.Default;
+                if (ret == 0)
+                {
+                    Form_output form = new Form_output(stdout + stderr);
+                    form.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show(errmsg);
+                }
+            },ct,TaskCreationOptions.None,TaskScheduler.FromCurrentSynchronizationContext());
+            
+        }
+
+
         private int ExecCommand(string exe_file, string args, string exec_dir, out string stdout, out string stderr,out string errmsg)
         {
             int ret = 0;
@@ -123,7 +136,6 @@ namespace ExecCommandHelper
 
                 stdout = "";
                 stderr = "";
-                this.Cursor = Cursors.WaitCursor;
                 Process p = Process.Start(psi);
                 stdout = p.StandardOutput.ReadToEnd();
                 stderr = p.StandardError.ReadToEnd();
