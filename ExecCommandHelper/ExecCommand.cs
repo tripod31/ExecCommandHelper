@@ -16,18 +16,38 @@ namespace ExecCommandHelper
         private string _stdout = "";
         private string _stderr = "";
 
+        public Process process
+        {
+            get { return _p; }
+        }
+        public int ret_code
+        {
+            get { return _ret; }
+        }
+        public string errmsg
+        {
+            get { return _errmsg; }
+        }
+        public string stdout
+        {
+            get { return _stdout; }
+        }
+        public string stderr
+        {
+            get { return _stderr; }
+        }
 
         public ExecCommand(Form form)
         {
             _form = form;
         }
 
-        private int Exec(string exe_file, string args, string exec_dir, out string stdout, out string stderr, out string errmsg,EventHandler handler)
+        public int Exec(string exe_file, string args,string exec_dir,EventHandler handler)
         {
-            int ret = 0;
-            stdout = "";
-            stderr = "";
-            errmsg = "";
+            _ret = 0;
+            _stdout = "";
+            _stderr = "";
+            _errmsg = "";
 
             try
             {
@@ -41,38 +61,37 @@ namespace ExecCommandHelper
                 psi.Arguments = args;
                 psi.WorkingDirectory = exec_dir;
 
-                System.Diagnostics.Process p = new System.Diagnostics.Process();
-                p.StartInfo = psi;
+                _p = new System.Diagnostics.Process();
+                _p.StartInfo = psi;
                 //OutputDataReceivedイベントハンドラを追加
-                p.OutputDataReceived += p_OutputDataReceived;
-                p.ErrorDataReceived += p_ErrorDataReceived;
+                _p.OutputDataReceived += p_OutputDataReceived;
+                _p.ErrorDataReceived += p_ErrorDataReceived;
 
                 //イベントハンドラがフォームを作成したスレッドで実行されるようにする
-                p.SynchronizingObject = _form;
+                _p.SynchronizingObject = _form;
                 //イベントハンドラの追加
-                p.Exited += handler;
+                _p.Exited += handler;
                 //プロセスが終了したときに Exited イベントを発生させる
-                p.EnableRaisingEvents = true;
+                _p.EnableRaisingEvents = true;
 
                 _stdout = "";
                 _stderr = "";
 
-                p.Start();
+                _p.Start();
 
                 //非同期で出力の読み取りを開始
-                p.BeginOutputReadLine();
-                p.BeginErrorReadLine();
+                _p.BeginOutputReadLine();
+                _p.BeginErrorReadLine();
 
-                _p = p;
                 //p.WaitForExit();
 
             }
             catch (Exception e)
             {
                 _errmsg = e.Message;
-                ret = -1;
+                _ret = -1;
             }
-            return ret;
+            return _ret;
         }
         //OutputDataReceivedイベントハンドラ
         //行が出力されるたびに呼び出される
