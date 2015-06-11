@@ -18,6 +18,13 @@ namespace ExecCommandHelper
 		private const string XML_FILE = "infos.xml";
         private ExecCommandInfoCtrl _infoCtrl = new ExecCommandInfoCtrl();
 
+        private Process _p;
+        private int _ret = 0;
+        private string _errmsg = "";
+        private string _stdout = "";
+        private string _stderr = "";
+
+
 		public Form_main()
 		{
 			this.InitializeComponent();
@@ -83,22 +90,8 @@ namespace ExecCommandHelper
                 args = "";
             }
             string exec_dir = textBox_exec_dir.Text,stdout = "", stderr = "", errmsg = "";
-
-            int ret = 0;
             
-            ret = ExecCommand(exe_file, args, exec_dir, out stdout, out stderr, out errmsg);
-
-            this.Cursor = Cursors.Default;
-            if (ret == 0)
-            {
-                Form_output form = new Form_output(stdout + stderr);
-                form.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show(errmsg);
-            }
-            
+            _ret = ExecCommand(exe_file, args, exec_dir, out stdout, out stderr, out errmsg);            
         }
 
 
@@ -121,23 +114,72 @@ namespace ExecCommandHelper
                 psi.Arguments = args;
                 psi.WorkingDirectory = exec_dir;
 
-                stdout = "";
-                stderr = "";
-                Process p = Process.Start(psi);
-                stdout = p.StandardOutput.ReadToEnd();
-                stderr = p.StandardError.ReadToEnd();
-                p.WaitForExit();
+                System.Diagnostics.Process p = new System.Diagnostics.Process();
+                p.StartInfo = psi;
+                //OutputDataReceivedイベントハンドラを追加
+                p.OutputDataReceived += p_OutputDataReceived;
+                p.ErrorDataReceived += p_ErrorDataReceived;
+                
+                //イベントハンドラがフォームを作成したスレッドで実行されるようにする
+                p.SynchronizingObject = this;
+                //イベントハンドラの追加
+                p.Exited += new EventHandler(p_Exited);
+                //プロセスが終了したときに Exited イベントを発生させる
+                p.EnableRaisingEvents = true;
+                
+                _stdout = "";
+                _stderr = "";
+
+                p.Start();
+                
+                //非同期で出力の読み取りを開始
+                p.BeginOutputReadLine();
+                p.BeginErrorReadLine();
+
+                _p = p;
+                //p.WaitForExit();
                 
             }
             catch (Exception e)
             {
-                errmsg = e.Message;
+                _errmsg = e.Message;
                 ret = -1;
             }
             return ret;
         }
         private void button_abort_Click(object sender, EventArgs e)
         {
+            if (!_p.HasExited)
+                _p.Kill();
+        }
+        private void p_Exited(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.Default;
+            if (_ret == 0)
+            {
+                Form_output form = new Form_output(_stdout + _stderr);
+                form.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show(_errmsg);
+            }
+
+        }
+        //OutputDataReceivedイベントハンドラ
+        //行が出力されるたびに呼び出される
+        private void p_OutputDataReceived(object sender,System.Diagnostics.DataReceivedEventArgs e)
+        {
+            if (_stdout.Length > 0)
+                _stdout += Environment.NewLine;
+            _stdout += e.Data;
+        }
+        //ErrorDataReceivedイベントハンドラ
+        private void p_ErrorDataReceived(object sender,System.Diagnostics.DataReceivedEventArgs e)
+        {
+            if (_stderr.Length > 0)
+                _stderr += Environment.NewLine;            
+            _stderr += e.Data;
         }
         private void button_exec_dir_Click(object sender, EventArgs e)
         {
