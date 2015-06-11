@@ -65,14 +65,7 @@ namespace ExecCommandHelper
 			Settings.Default.Save();
 			this.save_infos();
 		}
-		private void button_exec_dir_Click(object sender, EventArgs e)
-		{
-			this.folderBrowserDialog1.SelectedPath = this.textBox_exec_dir.Text;
-			if (this.folderBrowserDialog1.ShowDialog() == DialogResult.OK)
-			{
-				this.textBox_exec_dir.Text = this.folderBrowserDialog1.SelectedPath;
-			}
-		}
+
 
 		private void button_exec_Click(object sender, EventArgs e)
 		{
@@ -143,6 +136,7 @@ namespace ExecCommandHelper
                 stdout = p.StandardOutput.ReadToEnd();
                 stderr = p.StandardError.ReadToEnd();
                 p.WaitForExit();
+                
             }
             catch (Exception e)
             {
@@ -151,7 +145,21 @@ namespace ExecCommandHelper
             }
             return ret;
         }
-
+        private void button_abort_Click(object sender, EventArgs e)
+        {
+            if (_task != null && _task.Status == TaskStatus.Running)
+            {
+                _cts.Cancel();
+            }
+        }
+        private void button_exec_dir_Click(object sender, EventArgs e)
+        {
+            this.folderBrowserDialog1.SelectedPath = this.textBox_exec_dir.Text;
+            if (this.folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                this.textBox_exec_dir.Text = this.folderBrowserDialog1.SelectedPath;
+            }
+        }
 		private void button_folder_Click(object sender, EventArgs e)
 		{
 			this.folderBrowserDialog1.SelectedPath = this.textBox_exec_dir.Text;
@@ -308,13 +316,7 @@ namespace ExecCommandHelper
             this.Size = Properties.Settings.Default.main_size;   // databindingするとおかしくなる
         }
 
-        private void button_abort_Click(object sender, EventArgs e)
-        {
-            if (_task!=null && _task.Status == TaskStatus.Running)
-            {
-                _cts.Cancel();
-            }
-        }
+
 
     }
 }
