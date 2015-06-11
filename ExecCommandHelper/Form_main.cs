@@ -247,7 +247,10 @@ namespace ExecCommandHelper
 			{
 				string name = this.comboBox_infos.Text;
 				ExecCommandInfo info = _infoCtrl.get_info(name);
-				this.disp_info(info);
+                if (info != null)
+                {
+                    this.disp_info(info);
+                }
 			}
         }
 
