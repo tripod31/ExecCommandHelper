@@ -88,44 +88,53 @@ namespace ExecCommandHelper
 			}
 
             this.Cursor = Cursors.WaitCursor;
-            string stdout,stderr;
-			try
-			{
-                ExecCommand(exe_file, args, this.textBox_exec_dir.Text, out stdout, out stderr);
-            }
-            catch (Exception ex)
-			{
-				MessageBox.Show(ex.Message);
-				return;
-			}
-            finally
+            string stdout,stderr,errmsg;
+            int ret=ExecCommand(exe_file, args, this.textBox_exec_dir.Text, out stdout, out stderr, out errmsg);
+            this.Cursor = Cursors.Default;
+            if (ret == 0)
             {
-                this.Cursor = Cursors.Default;
+                Form_output form = new Form_output(stdout + stderr);
+                form.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show(errmsg);
             }
 
-			Form_output form = new Form_output(stdout + stderr);
-			form.ShowDialog();
 		}
-        private void ExecCommand(string exe_file, string args, string exec_dir, out string stdout, out string stderr)
+        private int ExecCommand(string exe_file, string args, string exec_dir, out string stdout, out string stderr,out string errmsg)
         {
-            ProcessStartInfo psi = new ProcessStartInfo();
-            psi.RedirectStandardInput = false;
-            psi.RedirectStandardOutput = true;
-            psi.RedirectStandardError = true;
-            psi.UseShellExecute = false;
-            psi.CreateNoWindow = true;
-            psi.FileName = exe_file;
-            psi.Arguments = args;
-            psi.WorkingDirectory = exec_dir;
-            Process p = null;
+            int ret = 0;
             stdout = "";
             stderr = "";
-            this.Cursor = Cursors.WaitCursor;
-            p = Process.Start(psi);
-            stdout = p.StandardOutput.ReadToEnd();
-            stderr = p.StandardError.ReadToEnd();
-            p.WaitForExit();
+            errmsg = "";
 
+            try
+            {
+                ProcessStartInfo psi = new ProcessStartInfo();
+                psi.RedirectStandardInput = false;
+                psi.RedirectStandardOutput = true;
+                psi.RedirectStandardError = true;
+                psi.UseShellExecute = false;
+                psi.CreateNoWindow = true;
+                psi.FileName = exe_file;
+                psi.Arguments = args;
+                psi.WorkingDirectory = exec_dir;
+
+                stdout = "";
+                stderr = "";
+                this.Cursor = Cursors.WaitCursor;
+                Process p = Process.Start(psi);
+                stdout = p.StandardOutput.ReadToEnd();
+                stderr = p.StandardError.ReadToEnd();
+                p.WaitForExit();
+            }
+            catch (Exception e)
+            {
+                errmsg = e.Message;
+                ret = -1;
+            }
+            return ret;
         }
 
 		private void button_folder_Click(object sender, EventArgs e)
