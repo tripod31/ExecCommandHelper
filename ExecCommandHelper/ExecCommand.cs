@@ -7,22 +7,25 @@ using System.Windows.Forms;
 
 namespace ExecCommandHelper
 {
+    /*
+        非同期にコマンドを実行  
+    */
     class ExecCommand
     {
-        private Form _form;
-        private Process _p;
-        private int _ret = 0;
+
+        private Process _process;
+        private int _errcode = 0;
         private string _errmsg = "";
         private string _stdout = "";
         private string _stderr = "";
 
         public Process process
         {
-            get { return _p; }
+            get { return _process; }
         }
-        public int ret_code
+        public int errcode
         {
-            get { return _ret; }
+            get { return _errcode; }
         }
         public string errmsg
         {
@@ -37,17 +40,17 @@ namespace ExecCommandHelper
             get { return _stderr; }
         }
 
-        public ExecCommand(Form form)
+        public ExecCommand()
         {
-            _form = form;
         }
 
-        public int Exec(string exe_file, string args,string exec_dir,EventHandler handler)
+        // コマンドを非同期を実行
+        public int ExecAsync(string exe_file, string args,string exec_dir,Form form,EventHandler exited_handler)
         {
-            _ret = 0;
+            _errcode = 0;
+            _errmsg = "";
             _stdout = "";
             _stderr = "";
-            _errmsg = "";
 
             try
             {
@@ -61,27 +64,27 @@ namespace ExecCommandHelper
                 psi.Arguments = args;
                 psi.WorkingDirectory = exec_dir;
 
-                _p = new System.Diagnostics.Process();
-                _p.StartInfo = psi;
+                _process = new System.Diagnostics.Process();
+                _process.StartInfo = psi;
                 //OutputDataReceivedイベントハンドラを追加
-                _p.OutputDataReceived += p_OutputDataReceived;
-                _p.ErrorDataReceived += p_ErrorDataReceived;
+                _process.OutputDataReceived += p_OutputDataReceived;
+                _process.ErrorDataReceived += p_ErrorDataReceived;
 
                 //イベントハンドラがフォームを作成したスレッドで実行されるようにする
-                _p.SynchronizingObject = _form;
+                _process.SynchronizingObject = form;
                 //イベントハンドラの追加
-                _p.Exited += handler;
+                _process.Exited += exited_handler;
                 //プロセスが終了したときに Exited イベントを発生させる
-                _p.EnableRaisingEvents = true;
+                _process.EnableRaisingEvents = true;
 
                 _stdout = "";
                 _stderr = "";
 
-                _p.Start();
+                _process.Start();
 
                 //非同期で出力の読み取りを開始
-                _p.BeginOutputReadLine();
-                _p.BeginErrorReadLine();
+                _process.BeginOutputReadLine();
+                _process.BeginErrorReadLine();
 
                 //p.WaitForExit();
 
@@ -89,10 +92,54 @@ namespace ExecCommandHelper
             catch (Exception e)
             {
                 _errmsg = e.Message;
-                _ret = -1;
+                _errcode = -1;
             }
-            return _ret;
+            return _errcode;
         }
+
+        // コマンドを同期実行
+        public int ExecSync(string exe_file, string args, string exec_dir)
+        {
+            _errcode = 0;
+            _errmsg = "";
+            _stdout = "";
+            _stderr = "";
+
+            try
+            {
+                ProcessStartInfo psi = new ProcessStartInfo();
+                psi.RedirectStandardInput = false;
+                psi.RedirectStandardOutput = true;
+                psi.RedirectStandardError = true;
+                psi.UseShellExecute = false;
+                psi.CreateNoWindow = true;
+                psi.FileName = exe_file;
+                psi.Arguments = args;
+                psi.WorkingDirectory = exec_dir;
+
+                _process = new System.Diagnostics.Process();
+                _process.StartInfo = psi;
+
+                _stdout = "";
+                _stderr = "";
+
+                _process.Start();
+
+                //非同期で出力の読み取りを開始
+                _stdout=_process.StandardOutput.ReadToEnd();
+                _stderr = _process.StandardError.ReadToEnd();
+
+                _process.WaitForExit();
+
+            }
+            catch (Exception e)
+            {
+                _errmsg = e.Message;
+                _errcode = -1;
+            }
+            return _errcode;
+        }
+
         //OutputDataReceivedイベントハンドラ
         //行が出力されるたびに呼び出される
         private void p_OutputDataReceived(object sender, System.Diagnostics.DataReceivedEventArgs e)

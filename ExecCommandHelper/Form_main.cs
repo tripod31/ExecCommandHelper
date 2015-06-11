@@ -8,8 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace ExecCommandHelper
 {
@@ -87,8 +85,8 @@ namespace ExecCommandHelper
             }
             string exec_dir = textBox_exec_dir.Text,stdout = "", stderr = "", errmsg = "";
 
-            this._ec = new ExecCommand(this);
-            this._ec.Exec(exe_file, args, exec_dir, new EventHandler(p_Exited));            
+            this._ec = new ExecCommand();
+            this._ec.ExecAsync(exe_file, args, exec_dir, this,new EventHandler(p_Exited));            
         }
 
 
@@ -102,7 +100,7 @@ namespace ExecCommandHelper
         private void p_Exited(object sender, EventArgs e)
         {
             this.Cursor = Cursors.Default;
-            if (this._ec.ret_code == 0)
+            if (this._ec.errcode == 0)
             {
                 Form_output form = new Form_output(this._ec.stdout + this._ec.stderr);
                 form.ShowDialog();
