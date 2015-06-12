@@ -58,6 +58,7 @@
             this.button_ok.TabIndex = 1;
             this.button_ok.Text = "閉じる";
             this.button_ok.UseVisualStyleBackColor = true;
+            this.button_ok.Click += new System.EventHandler(this.button_ok_Click);
             // 
             // button_abort
             // 
@@ -75,16 +76,16 @@
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(19, 19);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.label_status});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 454);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 455);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(728, 23);
+            this.statusStrip1.Size = new System.Drawing.Size(728, 22);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // label_status
             // 
             this.label_status.Name = "label_status";
-            this.label_status.Size = new System.Drawing.Size(0, 18);
+            this.label_status.Size = new System.Drawing.Size(0, 17);
             // 
             // Form_output
             // 

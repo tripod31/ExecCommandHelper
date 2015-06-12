@@ -27,22 +27,30 @@ namespace ExecCommandHelper
             label_status.Text = "実行中";
             this._thread = new Thread(() =>
             {
-                while (true) { 
+                bool bExit = false;
+                while (!bExit) {
                     Thread.Sleep(100);
                     this.Invoke((Action)(() =>
                     {
                         // Dispatcherを利用してUIスレッドに処理を配送
                         textBox1.Text = _ec.stdout + _ec.stderr;
-                         textBox1.SelectionStart = 0;
+
+                        //// 以下のテキストボックススクロール処理をいれると、ボタンのイベント処理に入らない場合がある
+                        ////カレット位置を末尾に移動
+                        //textBox1.SelectionStart = textBox1.Text.Length;
+                        ////テキストボックスにフォーカスを移動
+                        //textBox1.Focus();
+                        ////カレット位置までスクロール
+                        //textBox1.ScrollToCaret();
+                                                
                         if (this._ec.process.HasExited)
                         {
                             button_abort.Enabled = false;
                             label_status.Text = "終了";
-                            return;
+                            bExit = true;
                         }
                     }));
                 }
-
             });  
             this._thread.Start();  // 別スレッドでの処理開始
  
@@ -81,15 +89,20 @@ namespace ExecCommandHelper
             Properties.Settings.Default.form_output_size = this.Size;
             if (this._thread.IsAlive)
                 this._thread.Abort();
-        }
-        private void kill_process()
-        {
             if (!this._ec.process.HasExited)
                 this._ec.process.Kill();
+
         }
         private void button_abort_Click(object sender, EventArgs e)
         {
-            kill_process();
+            if (!this._ec.process.HasExited)
+                this._ec.process.Kill();
+
+        }
+
+        private void button_ok_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
 
