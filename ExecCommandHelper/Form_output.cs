@@ -83,8 +83,6 @@ namespace ExecCommandHelper
             Properties.Settings.Default.form_output_size = this.Size;
             if (this._thread.IsAlive)
                 this._thread.Abort();
-            if (!this._ec.process.HasExited)
-                this._ec.process.Kill();
 
         }
         private void button_abort_Click(object sender, EventArgs e)
