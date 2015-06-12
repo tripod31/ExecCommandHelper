@@ -42,31 +42,22 @@ namespace ExecCommandHelper
 
             });  
             this._thread.Start();  // 別スレッドでの処理開始
-            /*
-             * UIのTaskSchedulerを渡す
-             * エラーにならないが、画面が固まる
-            CancellationTokenSource cts = new CancellationTokenSource();
-            Task.Factory.StartNew(() =>
-            {
-                while (true)
-                {
-                    System.Threading.Thread.Sleep(1000);
-                    disp_output();
-                }
-            }, cts.Token, TaskCreationOptions.None, TaskScheduler.FromCurrentSynchronizationContext());
-            */
-            /*
-             * UIスレッド以外でコントロールにアクセスするとエラー
-            await Task.Run(() =>
-            {
-                while (true)
-                {
-                    System.Threading.Thread.Sleep(1000);
-                    disp_output();
-                }
-            });
-            */
+ 
+            //
+            // UIのTaskSchedulerを渡す
+            // エラーにならないが、画面が固まる
+            //
 
+            //Task.Factory.StartNew(() =>
+            //{
+            //    while (true)
+            //    {
+            //        System.Threading.Thread.Sleep(1000);
+            //        disp_output();
+            //    }
+            //}, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.FromCurrentSynchronizationContext());
+            
+ 
         }
 
         private void Form_output_FormClosing(object sender, FormClosingEventArgs e)
