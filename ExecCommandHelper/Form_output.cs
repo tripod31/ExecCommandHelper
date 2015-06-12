@@ -36,14 +36,6 @@ namespace ExecCommandHelper
                         string str = _ec.stdout + _ec.stderr;
 
                         textBox1.AppendText(str.Substring(textBox1.Text.Length));   //自動スクロールさせるため差分をappend
-
-                        //// 以下のテキストボックススクロール処理をいれると、ボタンのイベント処理に入らない場合がある
-                        ////カレット位置を末尾に移動
-                        //textBox1.SelectionStart = textBox1.Text.Length;
-                        ////テキストボックスにフォーカスを移動
-                        //textBox1.Focus();
-                        ////カレット位置までスクロール
-                        //textBox1.ScrollToCaret();
                                                 
                         if (this._ec.process.HasExited)
                         {
