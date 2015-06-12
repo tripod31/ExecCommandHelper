@@ -32,7 +32,7 @@ namespace ExecCommandHelper
             this._thread = new Thread(() =>
             {
                 while (true) { 
-                    Thread.Sleep(1000);
+                    Thread.Sleep(100);
                     this.Invoke((Action)(() =>
                     {
                         // Dispatcherを利用してUIスレッドに処理を配送
