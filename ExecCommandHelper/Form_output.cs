@@ -14,7 +14,6 @@ namespace ExecCommandHelper
     public partial class Form_output : Form
     {
         private ExecCommand _ec;
-        private Thread _thread;
         public Form_output(ExecCommand ec)
         {
             InitializeComponent();
@@ -25,29 +24,7 @@ namespace ExecCommandHelper
         {
             this.Size = Properties.Settings.Default.form_output_size;   // databindingするとおかしくなる
             label_status.Text = "実行中";
-            this._thread = new Thread(() =>
-            {
-                bool bExit = false;
-                while (!bExit) {
-                    Thread.Sleep(100);
-                    this.Invoke((Action)(() =>
-                    {
-                        // Dispatcherを利用してUIスレッドに処理を配送
-                        string str = _ec.stdout + _ec.stderr;
-
-                        textBox1.AppendText(str.Substring(textBox1.Text.Length));   //自動スクロールさせるため差分をappend
-                                                
-                        if (this._ec.process.HasExited)
-                        {
-                            button_abort.Enabled = false;
-                            label_status.Text = "終了";
-                            bExit = true;
-                        }
-                    }));
-                }
-            });  
-            this._thread.Start();  // 別スレッドでの処理開始
- 
+            timer1.Start();
         }
 
         private void Form_output_FormClosing(object sender, FormClosingEventArgs e)
@@ -66,8 +43,6 @@ namespace ExecCommandHelper
                 }
             }
             Properties.Settings.Default.form_output_size = this.Size;
-            if (this._thread.IsAlive)
-                this._thread.Abort();
 
         }
         private void button_abort_Click(object sender, EventArgs e)
@@ -80,6 +55,20 @@ namespace ExecCommandHelper
         private void button_ok_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            string str = _ec.stdout + _ec.stderr;
+
+            textBox1.AppendText(str.Substring(textBox1.Text.Length));   //自動スクロールさせるため差分をappend
+
+            if (this._ec.process.HasExited)
+            {
+                button_abort.Enabled = false;
+                label_status.Text = "終了";
+                timer1.Stop();
+            }
         }
 
 
