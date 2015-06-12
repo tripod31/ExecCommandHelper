@@ -64,7 +64,7 @@
             this.Controls.Add(this.textBox1);
             this.Name = "Form_output";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Form_output";
+            this.Text = "出力";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_output_FormClosing);
             this.Load += new System.EventHandler(this.Form_output_Load);
             this.ResumeLayout(false);

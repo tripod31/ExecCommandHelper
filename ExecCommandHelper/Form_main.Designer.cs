@@ -346,7 +346,7 @@
             this.Location = global::ExecCommandHelper.Properties.Settings.Default.main_location;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form_main";
-            this.Text = "Form1";
+            this.Text = "ExecCommandHelper";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_main_FormClosing);
             this.Load += new System.EventHandler(this.Form_main_Load);
             this.menuStrip1.ResumeLayout(false);
