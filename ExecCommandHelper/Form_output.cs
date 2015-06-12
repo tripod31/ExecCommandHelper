@@ -71,14 +71,30 @@ namespace ExecCommandHelper
 
         private void Form_output_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (!this._ec.process.HasExited)
+            {
+                if (MessageBox.Show("実行中です。中断しますか？", "確認",MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    this._ec.process.Kill();
+
+                }
+                else
+                {
+                    e.Cancel = true;
+                    return; 
+                }
+            }
             Properties.Settings.Default.form_output_size = this.Size;
             this._thread.Abort();
         }
-
-        private void button_abort_Click(object sender, EventArgs e)
+        private void kill_process()
         {
             if (!this._ec.process.HasExited)
                 this._ec.process.Kill();
+        }
+        private void button_abort_Click(object sender, EventArgs e)
+        {
+            kill_process();
         }
 
 
