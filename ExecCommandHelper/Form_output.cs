@@ -20,15 +20,11 @@ namespace ExecCommandHelper
             InitializeComponent();
             _ec = ec;
         }
-        private void disp_output()
-        {
-            textBox1.Text = _ec.stdout + _ec.stderr;
-            textBox1.SelectionStart = 0;
-        }
-        
+
         private void Form_output_Load(object sender, EventArgs e)
         {
             this.Size = Properties.Settings.Default.form_output_size;   // databindingするとおかしくなる
+            label_status.Text = "実行中";
             this._thread = new Thread(() =>
             {
                 while (true) { 
@@ -36,7 +32,14 @@ namespace ExecCommandHelper
                     this.Invoke((Action)(() =>
                     {
                         // Dispatcherを利用してUIスレッドに処理を配送
-                        disp_output();
+                        textBox1.Text = _ec.stdout + _ec.stderr;
+                         textBox1.SelectionStart = 0;
+                        if (this._ec.process.HasExited)
+                        {
+                            button_abort.Enabled = false;
+                            label_status.Text = "終了";
+                            return;
+                        }
                     }));
                 }
 
@@ -76,7 +79,8 @@ namespace ExecCommandHelper
                 }
             }
             Properties.Settings.Default.form_output_size = this.Size;
-            this._thread.Abort();
+            if (this._thread.IsAlive)
+                this._thread.Abort();
         }
         private void kill_process()
         {
