@@ -33,7 +33,9 @@ namespace ExecCommandHelper
                     this.Invoke((Action)(() =>
                     {
                         // Dispatcherを利用してUIスレッドに処理を配送
-                        textBox1.Text = _ec.stdout + _ec.stderr;
+                        string str = _ec.stdout + _ec.stderr;
+
+                        textBox1.AppendText(str.Substring(textBox1.Text.Length));   //自動スクロールさせるため差分をappend
 
                         //// 以下のテキストボックススクロール処理をいれると、ボタンのイベント処理に入らない場合がある
                         ////カレット位置を末尾に移動
