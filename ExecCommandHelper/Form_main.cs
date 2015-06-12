@@ -61,6 +61,7 @@ namespace ExecCommandHelper
 		{
             Properties.Settings.Default.main_size = this.Size;
             Properties.Settings.Default.selected_info = comboBox_infos.Text;
+            Properties.Settings.Default.selline = menuitem_selline.Checked;
 			Settings.Default.Save();
 			this.save_infos();
 		}
@@ -299,12 +300,28 @@ namespace ExecCommandHelper
                 this.disp_info(info);
             }
             textBox_commandLine.SelectionStart = 0;
+
             this.Size = Properties.Settings.Default.main_size;   // databindingするとおかしくなる
+            menuitem_selline.Checked = Properties.Settings.Default.selline; 
         }
 
         private void button_read_info_Click(object sender, EventArgs e)
         {
             disp_selected_info();
+        }
+
+        private void textBox_commandLine_DoubleClick(object sender, EventArgs e)
+        {
+            if (menuitem_selline.Checked)
+            {
+                int start_idx = textBox_commandLine.GetFirstCharIndexOfCurrentLine();
+                int line_idx = textBox_commandLine.GetLineFromCharIndex(textBox_commandLine.SelectionStart);
+                int length = textBox_commandLine.Lines[line_idx].Length;
+
+                textBox_commandLine.SelectionStart = start_idx;
+                textBox_commandLine.SelectionLength = length;
+            }
+           
         }
 
 

@@ -94,5 +94,17 @@ namespace ExecCommandHelper.Properties {
                 this["selected_info"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool selline {
+            get {
+                return ((bool)(this["selline"]));
+            }
+            set {
+                this["selline"] = value;
+            }
+        }
     }
 }

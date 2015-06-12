@@ -35,6 +35,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.設定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItem_font = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuitem_selline = new System.Windows.Forms.ToolStripMenuItem();
             this.button_exec_dir = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -50,13 +51,13 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.comboBox_infos = new System.Windows.Forms.ToolStripComboBox();
+            this.button_read_info = new System.Windows.Forms.ToolStripButton();
             this.button_save_info = new System.Windows.Forms.ToolStripButton();
             this.button_delete_info = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.button_multiline = new System.Windows.Forms.ToolStripButton();
             this.button_oneline = new System.Windows.Forms.ToolStripButton();
             this.button_abort = new System.Windows.Forms.Button();
-            this.button_read_info = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -106,7 +107,8 @@
             // 設定ToolStripMenuItem
             // 
             this.設定ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuItem_font});
+            this.ToolStripMenuItem_font,
+            this.menuitem_selline});
             this.設定ToolStripMenuItem.Name = "設定ToolStripMenuItem";
             this.設定ToolStripMenuItem.Size = new System.Drawing.Size(51, 23);
             this.設定ToolStripMenuItem.Text = "設定";
@@ -114,9 +116,17 @@
             // ToolStripMenuItem_font
             // 
             this.ToolStripMenuItem_font.Name = "ToolStripMenuItem_font";
-            this.ToolStripMenuItem_font.Size = new System.Drawing.Size(120, 24);
+            this.ToolStripMenuItem_font.Size = new System.Drawing.Size(207, 24);
             this.ToolStripMenuItem_font.Text = "フォント";
             this.ToolStripMenuItem_font.Click += new System.EventHandler(this.ToolStripMenuItem_font_Click);
+            // 
+            // menuitem_selline
+            // 
+            this.menuitem_selline.Checked = global::ExecCommandHelper.Properties.Settings.Default.selline;
+            this.menuitem_selline.CheckOnClick = true;
+            this.menuitem_selline.Name = "menuitem_selline";
+            this.menuitem_selline.Size = new System.Drawing.Size(207, 24);
+            this.menuitem_selline.Text = "ダブルクリックで行選択";
             // 
             // button_exec_dir
             // 
@@ -155,6 +165,7 @@
             this.textBox_commandLine.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox_commandLine.Size = new System.Drawing.Size(654, 156);
             this.textBox_commandLine.TabIndex = 1;
+            this.textBox_commandLine.DoubleClick += new System.EventHandler(this.textBox_commandLine_DoubleClick);
             // 
             // groupBox1
             // 
@@ -250,6 +261,16 @@
             this.comboBox_infos.Size = new System.Drawing.Size(121, 27);
             this.comboBox_infos.SelectedIndexChanged += new System.EventHandler(this.comboBox_infos_SelectedIndexChanged);
             // 
+            // button_read_info
+            // 
+            this.button_read_info.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.button_read_info.Image = ((System.Drawing.Image)(resources.GetObject("button_read_info.Image")));
+            this.button_read_info.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.button_read_info.Name = "button_read_info";
+            this.button_read_info.Size = new System.Drawing.Size(43, 24);
+            this.button_read_info.Text = "読込";
+            this.button_read_info.Click += new System.EventHandler(this.button_read_info_Click);
+            // 
             // button_save_info
             // 
             this.button_save_info.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -305,16 +326,6 @@
             this.button_abort.Text = "中断";
             this.button_abort.UseVisualStyleBackColor = true;
             this.button_abort.Click += new System.EventHandler(this.button_abort_Click);
-            // 
-            // button_read_info
-            // 
-            this.button_read_info.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.button_read_info.Image = ((System.Drawing.Image)(resources.GetObject("button_read_info.Image")));
-            this.button_read_info.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.button_read_info.Name = "button_read_info";
-            this.button_read_info.Size = new System.Drawing.Size(43, 24);
-            this.button_read_info.Text = "読込";
-            this.button_read_info.Click += new System.EventHandler(this.button_read_info_Click);
             // 
             // Form_main
             // 
@@ -379,6 +390,7 @@
         private System.Windows.Forms.ToolStripButton button_oneline;
         private System.Windows.Forms.Button button_abort;
         private System.Windows.Forms.ToolStripButton button_read_info;
+        private System.Windows.Forms.ToolStripMenuItem menuitem_selline;
     }
 }
 
