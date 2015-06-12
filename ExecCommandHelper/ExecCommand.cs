@@ -10,7 +10,7 @@ namespace ExecCommandHelper
     /*
         非同期にコマンドを実行  
     */
-    class ExecCommand
+    public class ExecCommand
     {
 
         private Process _process;
@@ -45,7 +45,7 @@ namespace ExecCommandHelper
         }
 
         // コマンドを非同期を実行
-        public int ExecAsync(string exe_file, string args,string exec_dir,Form form,EventHandler exited_handler)
+        public int ExecAsync(string exe_file, string args,string exec_dir,Form form=null,EventHandler exited_handler=null)
         {
             _errcode = 0;
             _errmsg = "";
@@ -70,12 +70,15 @@ namespace ExecCommandHelper
                 _process.OutputDataReceived += p_OutputDataReceived;
                 _process.ErrorDataReceived += p_ErrorDataReceived;
 
-                //イベントハンドラがフォームを作成したスレッドで実行されるようにする
-                _process.SynchronizingObject = form;
-                //イベントハンドラの追加
-                _process.Exited += exited_handler;
-                //プロセスが終了したときに Exited イベントを発生させる
-                _process.EnableRaisingEvents = true;
+                if (form!=null && exited_handler != null)
+                {
+                    //イベントハンドラがフォームを作成したスレッドで実行されるようにする
+                    _process.SynchronizingObject = form;
+                    //イベントハンドラの追加
+                    _process.Exited += exited_handler;
+                    //プロセスが終了したときに Exited イベントを発生させる
+                    _process.EnableRaisingEvents = true;
+                }
 
                 _stdout = "";
                 _stderr = "";

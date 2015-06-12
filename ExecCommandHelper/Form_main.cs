@@ -69,7 +69,7 @@ namespace ExecCommandHelper
 
 		private void button_exec_Click(object sender, EventArgs e)
 		{
-            this.Cursor = Cursors.WaitCursor;
+            //this.Cursor = Cursors.WaitCursor;
             string commandline = this.get_commandLine();
             int pos = commandline.IndexOf(" ");
             string exe_file;
@@ -87,17 +87,27 @@ namespace ExecCommandHelper
             string exec_dir = textBox_exec_dir.Text,stdout = "", stderr = "", errmsg = "";
 
             this._ec = new ExecCommand();
-            this._ec.ExecAsync(exe_file, args, exec_dir, this,p_Exited);            
+            this._ec.ExecAsync(exe_file, args, exec_dir);
+            if (this._ec.errcode == 0)
+            {
+                Form_output form = new Form_output(this._ec);
+                form.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show(this._ec.errmsg);
+            }            
         }
 
 
-
+        /*
         private void button_abort_Click(object sender, EventArgs e)
         {
             if (!this._ec.process.HasExited)
                 this._ec.process.Kill();
         }
-
+        */
+        /*
         private void p_Exited(object sender, EventArgs e)
         {
             this.Cursor = Cursors.Default;
@@ -112,7 +122,7 @@ namespace ExecCommandHelper
             }
 
         }
- 
+        */
         private void button_exec_dir_Click(object sender, EventArgs e)
         {
             this.folderBrowserDialog1.SelectedPath = this.textBox_exec_dir.Text;
