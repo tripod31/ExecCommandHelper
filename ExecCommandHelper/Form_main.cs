@@ -84,7 +84,7 @@ namespace ExecCommandHelper
                 exe_file = commandline;
                 args = "";
             }
-            string exec_dir = textBox_exec_dir.Text,stdout = "", stderr = "", errmsg = "";
+            string exec_dir = textBox_exec_dir.Text;
 
             this._ec = new ExecCommand();
             this._ec.ExecAsync(exe_file, args, exec_dir);
