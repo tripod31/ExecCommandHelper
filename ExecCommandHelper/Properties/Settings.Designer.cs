@@ -106,5 +106,17 @@ namespace ExecCommandHelper.Properties {
                 this["selline"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string output_encoding {
+            get {
+                return ((string)(this["output_encoding"]));
+            }
+            set {
+                this["output_encoding"] = value;
+            }
+        }
     }
 }
