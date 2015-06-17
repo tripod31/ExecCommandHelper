@@ -57,6 +57,9 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.button_multiline = new System.Windows.Forms.ToolStripButton();
             this.button_oneline = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.comboBox_encoding = new System.Windows.Forms.ToolStripComboBox();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -74,7 +77,7 @@
             // button_exec
             // 
             this.button_exec.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_exec.Location = new System.Drawing.Point(22, 356);
+            this.button_exec.Location = new System.Drawing.Point(22, 411);
             this.button_exec.Name = "button_exec";
             this.button_exec.Size = new System.Drawing.Size(75, 23);
             this.button_exec.TabIndex = 3;
@@ -86,7 +89,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(19, 321);
+            this.label2.Location = new System.Drawing.Point(19, 376);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(98, 15);
             this.label2.TabIndex = 4;
@@ -130,7 +133,7 @@
             // button_exec_dir
             // 
             this.button_exec_dir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_exec_dir.Location = new System.Drawing.Point(656, 318);
+            this.button_exec_dir.Location = new System.Drawing.Point(656, 293);
             this.button_exec_dir.Name = "button_exec_dir";
             this.button_exec_dir.Size = new System.Drawing.Size(23, 23);
             this.button_exec_dir.TabIndex = 7;
@@ -146,7 +149,7 @@
             // 
             this.textBox_exec_dir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_exec_dir.Location = new System.Drawing.Point(129, 318);
+            this.textBox_exec_dir.Location = new System.Drawing.Point(129, 373);
             this.textBox_exec_dir.Name = "textBox_exec_dir";
             this.textBox_exec_dir.Size = new System.Drawing.Size(521, 21);
             this.textBox_exec_dir.TabIndex = 5;
@@ -162,7 +165,7 @@
             this.textBox_commandLine.Multiline = true;
             this.textBox_commandLine.Name = "textBox_commandLine";
             this.textBox_commandLine.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_commandLine.Size = new System.Drawing.Size(654, 156);
+            this.textBox_commandLine.Size = new System.Drawing.Size(654, 206);
             this.textBox_commandLine.TabIndex = 1;
             this.textBox_commandLine.DoubleClick += new System.EventHandler(this.textBox_commandLine_DoubleClick);
             // 
@@ -173,7 +176,7 @@
             this.groupBox1.Controls.Add(this.radioButton_fullpath);
             this.groupBox1.Controls.Add(this.button_file);
             this.groupBox1.Controls.Add(this.radioButton_relativepath);
-            this.groupBox1.Location = new System.Drawing.Point(25, 262);
+            this.groupBox1.Location = new System.Drawing.Point(25, 317);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(342, 50);
             this.groupBox1.TabIndex = 8;
@@ -240,7 +243,10 @@
             this.button_delete_info,
             this.toolStripSeparator1,
             this.button_multiline,
-            this.button_oneline});
+            this.button_oneline,
+            this.toolStripSeparator2,
+            this.toolStripLabel2,
+            this.comboBox_encoding});
             this.toolStrip1.Location = new System.Drawing.Point(0, 27);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(728, 27);
@@ -315,11 +321,32 @@
             this.button_oneline.Text = "一行";
             this.button_oneline.Click += new System.EventHandler(this.button_oneline_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(102, 24);
+            this.toolStripLabel2.Text = "出力文字コード";
+            this.toolStripLabel2.ToolTipText = "実行するコマンドが出力する文字コード";
+            // 
+            // comboBox_encoding
+            // 
+            this.comboBox_encoding.Items.AddRange(new object[] {
+            "Shift_JIS",
+            "UTF-8",
+            "EUC"});
+            this.comboBox_encoding.Name = "comboBox_encoding";
+            this.comboBox_encoding.Size = new System.Drawing.Size(121, 27);
+            // 
             // Form_main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(728, 494);
+            this.ClientSize = new System.Drawing.Size(728, 469);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button_exec_dir);
@@ -377,6 +404,9 @@
         private System.Windows.Forms.ToolStripButton button_oneline;
         private System.Windows.Forms.ToolStripButton button_read_info;
         private System.Windows.Forms.ToolStripMenuItem menuitem_selline;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
+        private System.Windows.Forms.ToolStripComboBox comboBox_encoding;
     }
 }
 

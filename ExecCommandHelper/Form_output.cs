@@ -23,7 +23,7 @@ namespace ExecCommandHelper
         private void Form_output_Load(object sender, EventArgs e)
         {
             this.Size = Properties.Settings.Default.form_output_size;   // databindingするとおかしくなる
-            combobox_encoding.Text = Properties.Settings.Default.output_encoding;
+
             label_status.Text = "実行中";
             timer1.Start();
         }
@@ -43,7 +43,7 @@ namespace ExecCommandHelper
                     return; 
                 }
             }
-            Properties.Settings.Default.output_encoding = combobox_encoding.Text;
+
 
         }
         private void button_abort_Click(object sender, EventArgs e)
@@ -62,9 +62,6 @@ namespace ExecCommandHelper
         private void timer1_Tick(object sender, EventArgs e)
         {
             string str = _ec.stdout + _ec.stderr;
-            //Shift JISとして文字列に変換
-            byte[] bytesData = System.Text.Encoding.GetEncoding(932).GetBytes(str);
-            str = get_output_encoding().GetString(bytesData);
 
             textBox1.AppendText(str.Substring(textBox1.Text.Length));   //自動スクロールさせるため差分をappend
 
@@ -76,34 +73,10 @@ namespace ExecCommandHelper
             }
         }
 
-        private Encoding get_output_encoding()
-        {
-            Encoding enc = System.Text.Encoding.GetEncoding(932);
-            switch (combobox_encoding.Text)
-            {
-                case "Shift_JIS":
-                    enc = System.Text.Encoding.GetEncoding(932);
-                    break;
-                case "UTF-8":
-                    enc = System.Text.Encoding.UTF8;
-                    break;
-                case "EUC":
-                    enc = System.Text.Encoding.GetEncoding(51932);
-                    break;
-
-            }
-            return enc;
-        }
 
 
-        private void combobox_encoding_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string str = textBox1.Text;
-            //Shift JISとして文字列に変換
-            byte[] bytesData = System.Text.Encoding.GetEncoding(932).GetBytes(str);
-            str = get_output_encoding().GetString(bytesData);
-            textBox1.Text = str;
-        }
+
+
 
 
     }

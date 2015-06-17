@@ -18,6 +18,7 @@ namespace ExecCommandHelper
         private string _errmsg = "";
         private string _stdout = "";
         private string _stderr = "";
+        private Encoding _encoding=Encoding.UTF8;
 
         public Process process
         {
@@ -38,6 +39,14 @@ namespace ExecCommandHelper
         public string stderr
         {
             get { return _stderr; }
+        }
+        public Encoding Encoding
+        {
+            get { return _encoding; }
+            set
+            {
+                _encoding = value;
+            }
         }
 
         public ExecCommand()
@@ -63,6 +72,8 @@ namespace ExecCommandHelper
                 psi.FileName = exe_file;
                 psi.Arguments = args;
                 psi.WorkingDirectory = exec_dir;
+                psi.StandardOutputEncoding = _encoding;
+                psi.StandardErrorEncoding = _encoding;
 
                 _process = new System.Diagnostics.Process();
                 _process.StartInfo = psi;

@@ -62,6 +62,7 @@ namespace ExecCommandHelper
             Properties.Settings.Default.main_size = this.Size;
             Properties.Settings.Default.selected_info = comboBox_infos.Text;
             Properties.Settings.Default.selline = menuitem_selline.Checked;
+            Properties.Settings.Default.output_encoding = comboBox_encoding.Text;
 			Settings.Default.Save();
 			this.save_infos();
 		}
@@ -87,6 +88,7 @@ namespace ExecCommandHelper
             string exec_dir = textBox_exec_dir.Text;
 
             this._ec = new ExecCommand();
+            _ec.Encoding = get_output_encoding();
             this._ec.ExecAsync(exe_file, args, exec_dir);
             if (this._ec.errcode == 0)
             {
@@ -312,7 +314,8 @@ namespace ExecCommandHelper
             textBox_commandLine.SelectionStart = 0;
 
             this.Size = Properties.Settings.Default.main_size;   // databindingするとおかしくなる
-            menuitem_selline.Checked = Properties.Settings.Default.selline; 
+            menuitem_selline.Checked = Properties.Settings.Default.selline;
+            comboBox_encoding.Text = Properties.Settings.Default.output_encoding;
         }
 
         private void button_read_info_Click(object sender, EventArgs e)
@@ -334,6 +337,24 @@ namespace ExecCommandHelper
            
         }
 
+        private Encoding get_output_encoding()
+        {
+            Encoding enc = System.Text.Encoding.GetEncoding(932);
+            switch (comboBox_encoding.Text)
+            {
+                case "Shift_JIS":
+                    enc = System.Text.Encoding.GetEncoding(932);
+                    break;
+                case "UTF-8":
+                    enc = System.Text.Encoding.UTF8;
+                    break;
+                case "EUC":
+                    enc = System.Text.Encoding.GetEncoding(51932);
+                    break;
+
+            }
+            return enc;
+        }
 
 
     }
