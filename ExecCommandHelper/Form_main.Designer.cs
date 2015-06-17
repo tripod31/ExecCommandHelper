@@ -133,7 +133,7 @@
             // button_exec_dir
             // 
             this.button_exec_dir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_exec_dir.Location = new System.Drawing.Point(656, 293);
+            this.button_exec_dir.Location = new System.Drawing.Point(656, 372);
             this.button_exec_dir.Name = "button_exec_dir";
             this.button_exec_dir.Size = new System.Drawing.Size(23, 23);
             this.button_exec_dir.TabIndex = 7;
