@@ -77,7 +77,7 @@
             // button_exec
             // 
             this.button_exec.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_exec.Location = new System.Drawing.Point(22, 411);
+            this.button_exec.Location = new System.Drawing.Point(22, 418);
             this.button_exec.Name = "button_exec";
             this.button_exec.Size = new System.Drawing.Size(75, 23);
             this.button_exec.TabIndex = 3;
@@ -89,7 +89,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(19, 376);
+            this.label2.Location = new System.Drawing.Point(19, 383);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(98, 15);
             this.label2.TabIndex = 4;
@@ -102,7 +102,7 @@
             this.設定ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(728, 27);
+            this.menuStrip1.Size = new System.Drawing.Size(734, 27);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -133,7 +133,7 @@
             // button_exec_dir
             // 
             this.button_exec_dir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_exec_dir.Location = new System.Drawing.Point(656, 372);
+            this.button_exec_dir.Location = new System.Drawing.Point(662, 379);
             this.button_exec_dir.Name = "button_exec_dir";
             this.button_exec_dir.Size = new System.Drawing.Size(23, 23);
             this.button_exec_dir.TabIndex = 7;
@@ -149,9 +149,9 @@
             // 
             this.textBox_exec_dir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_exec_dir.Location = new System.Drawing.Point(129, 373);
+            this.textBox_exec_dir.Location = new System.Drawing.Point(129, 380);
             this.textBox_exec_dir.Name = "textBox_exec_dir";
-            this.textBox_exec_dir.Size = new System.Drawing.Size(521, 21);
+            this.textBox_exec_dir.Size = new System.Drawing.Size(527, 21);
             this.textBox_exec_dir.TabIndex = 5;
             // 
             // textBox_commandLine
@@ -165,7 +165,7 @@
             this.textBox_commandLine.Multiline = true;
             this.textBox_commandLine.Name = "textBox_commandLine";
             this.textBox_commandLine.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_commandLine.Size = new System.Drawing.Size(654, 206);
+            this.textBox_commandLine.Size = new System.Drawing.Size(660, 213);
             this.textBox_commandLine.TabIndex = 1;
             this.textBox_commandLine.DoubleClick += new System.EventHandler(this.textBox_commandLine_DoubleClick);
             // 
@@ -176,7 +176,7 @@
             this.groupBox1.Controls.Add(this.radioButton_fullpath);
             this.groupBox1.Controls.Add(this.button_file);
             this.groupBox1.Controls.Add(this.radioButton_relativepath);
-            this.groupBox1.Location = new System.Drawing.Point(25, 317);
+            this.groupBox1.Location = new System.Drawing.Point(25, 324);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(342, 50);
             this.groupBox1.TabIndex = 8;
@@ -249,7 +249,7 @@
             this.comboBox_encoding});
             this.toolStrip1.Location = new System.Drawing.Point(0, 27);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(728, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(734, 27);
             this.toolStrip1.TabIndex = 12;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -346,7 +346,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(728, 469);
+            this.ClientSize = new System.Drawing.Size(734, 476);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button_exec_dir);
