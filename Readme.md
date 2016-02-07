@@ -17,6 +17,8 @@ ExecCommandHelper
 
 アンインストール方法
 -----
-ファイル削除のみでＯＫです。レジストリは使っていません。
+ファイル削除のみでＯＫです。レジストリは使っていません。  
+
+<img src="http://www.geocities.jp/tripod31hoge/images/execcommandhelper.png">
 
 
