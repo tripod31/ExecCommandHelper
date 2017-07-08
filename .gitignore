@@ -189,3 +189,5 @@ _Pvt_Extensions/
 ModelManifest.xml
 make_dist.bat
 *.rb
+/.vs/VSWorkspaceState.json
+/.vs/slnx.sqlite
