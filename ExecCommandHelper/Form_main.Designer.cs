@@ -68,18 +68,18 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 63);
+            this.label1.Location = new System.Drawing.Point(16, 65);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(284, 15);
+            this.label1.Size = new System.Drawing.Size(227, 12);
             this.label1.TabIndex = 0;
             this.label1.Text = "コマンドライン（実行時に改行をスペースに変換）";
             // 
             // button_exec
             // 
             this.button_exec.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_exec.Location = new System.Drawing.Point(22, 418);
+            this.button_exec.Location = new System.Drawing.Point(19, 358);
             this.button_exec.Name = "button_exec";
-            this.button_exec.Size = new System.Drawing.Size(75, 23);
+            this.button_exec.Size = new System.Drawing.Size(64, 20);
             this.button_exec.TabIndex = 3;
             this.button_exec.Text = "実行";
             this.button_exec.UseVisualStyleBackColor = true;
@@ -89,9 +89,9 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(19, 383);
+            this.label2.Location = new System.Drawing.Point(16, 328);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(98, 15);
+            this.label2.Size = new System.Drawing.Size(78, 12);
             this.label2.TabIndex = 4;
             this.label2.Text = "実行ディレクトリ";
             // 
@@ -102,7 +102,8 @@
             this.設定ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(734, 27);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(629, 28);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -112,13 +113,13 @@
             this.ToolStripMenuItem_font,
             this.menuitem_selline});
             this.設定ToolStripMenuItem.Name = "設定ToolStripMenuItem";
-            this.設定ToolStripMenuItem.Size = new System.Drawing.Size(51, 23);
+            this.設定ToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
             this.設定ToolStripMenuItem.Text = "設定";
             // 
             // ToolStripMenuItem_font
             // 
             this.ToolStripMenuItem_font.Name = "ToolStripMenuItem_font";
-            this.ToolStripMenuItem_font.Size = new System.Drawing.Size(207, 24);
+            this.ToolStripMenuItem_font.Size = new System.Drawing.Size(213, 24);
             this.ToolStripMenuItem_font.Text = "フォント";
             this.ToolStripMenuItem_font.Click += new System.EventHandler(this.ToolStripMenuItem_font_Click);
             // 
@@ -127,15 +128,15 @@
             this.menuitem_selline.Checked = global::ExecCommandHelper.Properties.Settings.Default.selline;
             this.menuitem_selline.CheckOnClick = true;
             this.menuitem_selline.Name = "menuitem_selline";
-            this.menuitem_selline.Size = new System.Drawing.Size(207, 24);
+            this.menuitem_selline.Size = new System.Drawing.Size(213, 24);
             this.menuitem_selline.Text = "ダブルクリックで行選択";
             // 
             // button_exec_dir
             // 
             this.button_exec_dir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_exec_dir.Location = new System.Drawing.Point(662, 379);
+            this.button_exec_dir.Location = new System.Drawing.Point(567, 325);
             this.button_exec_dir.Name = "button_exec_dir";
-            this.button_exec_dir.Size = new System.Drawing.Size(23, 23);
+            this.button_exec_dir.Size = new System.Drawing.Size(20, 20);
             this.button_exec_dir.TabIndex = 7;
             this.button_exec_dir.Text = "…";
             this.button_exec_dir.UseVisualStyleBackColor = true;
@@ -149,9 +150,9 @@
             // 
             this.textBox_exec_dir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_exec_dir.Location = new System.Drawing.Point(129, 380);
+            this.textBox_exec_dir.Location = new System.Drawing.Point(111, 326);
             this.textBox_exec_dir.Name = "textBox_exec_dir";
-            this.textBox_exec_dir.Size = new System.Drawing.Size(527, 21);
+            this.textBox_exec_dir.Size = new System.Drawing.Size(452, 19);
             this.textBox_exec_dir.TabIndex = 5;
             // 
             // textBox_commandLine
@@ -161,11 +162,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_commandLine.DataBindings.Add(new System.Windows.Forms.Binding("Font", global::ExecCommandHelper.Properties.Settings.Default, "font_commadline", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.textBox_commandLine.Font = global::ExecCommandHelper.Properties.Settings.Default.font_commadline;
-            this.textBox_commandLine.Location = new System.Drawing.Point(22, 91);
+            this.textBox_commandLine.Location = new System.Drawing.Point(18, 89);
             this.textBox_commandLine.Multiline = true;
             this.textBox_commandLine.Name = "textBox_commandLine";
             this.textBox_commandLine.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_commandLine.Size = new System.Drawing.Size(660, 213);
+            this.textBox_commandLine.Size = new System.Drawing.Size(566, 183);
             this.textBox_commandLine.TabIndex = 1;
             this.textBox_commandLine.DoubleClick += new System.EventHandler(this.textBox_commandLine_DoubleClick);
             // 
@@ -176,9 +177,9 @@
             this.groupBox1.Controls.Add(this.radioButton_fullpath);
             this.groupBox1.Controls.Add(this.button_file);
             this.groupBox1.Controls.Add(this.radioButton_relativepath);
-            this.groupBox1.Location = new System.Drawing.Point(25, 324);
+            this.groupBox1.Location = new System.Drawing.Point(21, 278);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(342, 50);
+            this.groupBox1.Size = new System.Drawing.Size(293, 43);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "パス入力";
@@ -186,9 +187,9 @@
             // button_folder
             // 
             this.button_folder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_folder.Location = new System.Drawing.Point(6, 21);
+            this.button_folder.Location = new System.Drawing.Point(5, 18);
             this.button_folder.Name = "button_folder";
-            this.button_folder.Size = new System.Drawing.Size(75, 23);
+            this.button_folder.Size = new System.Drawing.Size(64, 20);
             this.button_folder.TabIndex = 1;
             this.button_folder.Text = "フォルダ";
             this.button_folder.UseVisualStyleBackColor = true;
@@ -198,9 +199,9 @@
             // 
             this.radioButton_fullpath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.radioButton_fullpath.AutoSize = true;
-            this.radioButton_fullpath.Location = new System.Drawing.Point(252, 23);
+            this.radioButton_fullpath.Location = new System.Drawing.Point(216, 20);
             this.radioButton_fullpath.Name = "radioButton_fullpath";
-            this.radioButton_fullpath.Size = new System.Drawing.Size(70, 19);
+            this.radioButton_fullpath.Size = new System.Drawing.Size(60, 16);
             this.radioButton_fullpath.TabIndex = 4;
             this.radioButton_fullpath.TabStop = true;
             this.radioButton_fullpath.Text = "フルパス";
@@ -209,9 +210,9 @@
             // button_file
             // 
             this.button_file.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_file.Location = new System.Drawing.Point(87, 21);
+            this.button_file.Location = new System.Drawing.Point(75, 18);
             this.button_file.Name = "button_file";
-            this.button_file.Size = new System.Drawing.Size(75, 23);
+            this.button_file.Size = new System.Drawing.Size(64, 20);
             this.button_file.TabIndex = 2;
             this.button_file.Text = "ファイル";
             this.button_file.UseVisualStyleBackColor = true;
@@ -223,9 +224,9 @@
             this.radioButton_relativepath.AutoSize = true;
             this.radioButton_relativepath.Checked = global::ExecCommandHelper.Properties.Settings.Default.relative_path;
             this.radioButton_relativepath.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::ExecCommandHelper.Properties.Settings.Default, "relative_path", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.radioButton_relativepath.Location = new System.Drawing.Point(168, 23);
+            this.radioButton_relativepath.Location = new System.Drawing.Point(144, 20);
             this.radioButton_relativepath.Name = "radioButton_relativepath";
-            this.radioButton_relativepath.Size = new System.Drawing.Size(78, 19);
+            this.radioButton_relativepath.Size = new System.Drawing.Size(66, 16);
             this.radioButton_relativepath.TabIndex = 3;
             this.radioButton_relativepath.TabStop = true;
             this.radioButton_relativepath.Text = "相対パス";
@@ -247,23 +248,23 @@
             this.toolStripSeparator2,
             this.toolStripLabel2,
             this.comboBox_encoding});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 27);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 28);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(734, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(629, 28);
             this.toolStrip1.TabIndex = 12;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(69, 24);
+            this.toolStripLabel1.Size = new System.Drawing.Size(69, 25);
             this.toolStripLabel1.Text = "実行設定";
             // 
             // comboBox_infos
             // 
             this.comboBox_infos.DropDownWidth = 200;
             this.comboBox_infos.Name = "comboBox_infos";
-            this.comboBox_infos.Size = new System.Drawing.Size(121, 27);
+            this.comboBox_infos.Size = new System.Drawing.Size(104, 28);
             this.comboBox_infos.SelectedIndexChanged += new System.EventHandler(this.comboBox_infos_SelectedIndexChanged);
             // 
             // button_read_info
@@ -272,7 +273,7 @@
             this.button_read_info.Image = ((System.Drawing.Image)(resources.GetObject("button_read_info.Image")));
             this.button_read_info.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.button_read_info.Name = "button_read_info";
-            this.button_read_info.Size = new System.Drawing.Size(43, 24);
+            this.button_read_info.Size = new System.Drawing.Size(43, 25);
             this.button_read_info.Text = "読込";
             this.button_read_info.Click += new System.EventHandler(this.button_read_info_Click);
             // 
@@ -282,7 +283,7 @@
             this.button_save_info.Image = ((System.Drawing.Image)(resources.GetObject("button_save_info.Image")));
             this.button_save_info.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.button_save_info.Name = "button_save_info";
-            this.button_save_info.Size = new System.Drawing.Size(43, 24);
+            this.button_save_info.Size = new System.Drawing.Size(43, 25);
             this.button_save_info.Text = "保存";
             this.button_save_info.Click += new System.EventHandler(this.button_save_info_Click);
             // 
@@ -292,14 +293,14 @@
             this.button_delete_info.Image = ((System.Drawing.Image)(resources.GetObject("button_delete_info.Image")));
             this.button_delete_info.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.button_delete_info.Name = "button_delete_info";
-            this.button_delete_info.Size = new System.Drawing.Size(43, 24);
+            this.button_delete_info.Size = new System.Drawing.Size(43, 25);
             this.button_delete_info.Text = "削除";
             this.button_delete_info.Click += new System.EventHandler(this.button_delete_info_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 28);
             // 
             // button_multiline
             // 
@@ -307,7 +308,7 @@
             this.button_multiline.Image = ((System.Drawing.Image)(resources.GetObject("button_multiline.Image")));
             this.button_multiline.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.button_multiline.Name = "button_multiline";
-            this.button_multiline.Size = new System.Drawing.Size(43, 24);
+            this.button_multiline.Size = new System.Drawing.Size(43, 25);
             this.button_multiline.Text = "改行";
             this.button_multiline.Click += new System.EventHandler(this.button_multiline_Click);
             // 
@@ -317,19 +318,19 @@
             this.button_oneline.Image = ((System.Drawing.Image)(resources.GetObject("button_oneline.Image")));
             this.button_oneline.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.button_oneline.Name = "button_oneline";
-            this.button_oneline.Size = new System.Drawing.Size(43, 24);
+            this.button_oneline.Size = new System.Drawing.Size(43, 25);
             this.button_oneline.Text = "一行";
             this.button_oneline.Click += new System.EventHandler(this.button_oneline_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 28);
             // 
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(102, 24);
+            this.toolStripLabel2.Size = new System.Drawing.Size(100, 25);
             this.toolStripLabel2.Text = "出力文字コード";
             this.toolStripLabel2.ToolTipText = "実行するコマンドが出力する文字コード";
             // 
@@ -340,13 +341,13 @@
             "UTF-8",
             "EUC"});
             this.comboBox_encoding.Name = "comboBox_encoding";
-            this.comboBox_encoding.Size = new System.Drawing.Size(121, 27);
+            this.comboBox_encoding.Size = new System.Drawing.Size(104, 28);
             // 
             // Form_main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(734, 476);
+            this.ClientSize = new System.Drawing.Size(629, 408);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button_exec_dir);
