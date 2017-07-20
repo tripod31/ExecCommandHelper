@@ -38,10 +38,7 @@ namespace ExecCommandHelper
 					MessageBox.Show(e.Message);
 					return;
 				}
-				foreach (ExecCommandInfo info in _infoCtrl.Infos)
-				{
-					this.comboBox_infos.Items.Add(info.name);
-				}
+
 			}
 		}
 
@@ -57,10 +54,28 @@ namespace ExecCommandHelper
 			}
 		}
 
-		private void Form_main_FormClosing(object sender, FormClosingEventArgs e)
+        private void Form_main_Load(object sender, EventArgs e)
+        {
+            this.load_infos();
+            string selected_info = Properties.Settings.Default.selected_info;
+
+            ExecCommandInfo info = _infoCtrl.get_info(selected_info);
+            if (info != null)
+            {
+                text_command.Text = selected_info;
+                this.disp_info(info);
+            }
+            textBox_commandLine.SelectionStart = 0;
+
+            this.Size = Properties.Settings.Default.main_size;   // databindingするとおかしくなる
+            menuitem_selline.Checked = Properties.Settings.Default.selline;
+            comboBox_encoding.Text = Properties.Settings.Default.output_encoding;
+        }
+
+        private void Form_main_FormClosing(object sender, FormClosingEventArgs e)
 		{
             Properties.Settings.Default.main_size = this.Size;
-            Properties.Settings.Default.selected_info = comboBox_infos.Text;
+            Properties.Settings.Default.selected_info = text_command.Text;
             Properties.Settings.Default.selline = menuitem_selline.Checked;
             Properties.Settings.Default.output_encoding = comboBox_encoding.Text;
 			Settings.Default.Save();
@@ -206,11 +221,11 @@ namespace ExecCommandHelper
 		}
 		private void button_save_info_Click(object sender, EventArgs e)
 		{
-            string name = comboBox_infos.Text;
+            string name = text_command.Text;
 			if ( name=="")
 			{
 				MessageBox.Show("名前を入力してください");
-				this.comboBox_infos.Focus();
+				this.text_command.Focus();
                 return;
 			}
 			
@@ -230,17 +245,12 @@ namespace ExecCommandHelper
 		}
 		private ExecCommandInfo get_info_from_form()
 		{
-			return new ExecCommandInfo(this.comboBox_infos.Text, this.textBox_commandLine.Text, this.textBox_exec_dir.Text);
+			return new ExecCommandInfo(this.text_command.Text, this.textBox_commandLine.Text, this.textBox_exec_dir.Text);
 		}
 
 		private void add_info(ExecCommandInfo info)
 		{
-            _infoCtrl.add_info(info);
-            if (!comboBox_infos.Items.Contains(info.name))
-            {
-                comboBox_infos.Items.Add(info.name);
-            }
-						
+            _infoCtrl.add_info(info);				
 		}
 
 		private void disp_info(ExecCommandInfo info)
@@ -249,38 +259,23 @@ namespace ExecCommandHelper
             this.textBox_exec_dir.Text = info.exec_dir;
 		}
 
-		private void comboBox_infos_SelectedIndexChanged(object sender, EventArgs e)
-		{
-            disp_selected_info();
-		}
-
-        private void disp_selected_info()
-        {
-			if (!(this.comboBox_infos.Text == ""))
-			{
-				string name = this.comboBox_infos.Text;
-				ExecCommandInfo info = _infoCtrl.get_info(name);
-                if (info != null)
-                {
-                    this.disp_info(info);
-                }
-			}
-        }
 
         private void button_delete_info_Click(object sender, EventArgs e)
         {
-            if (this.comboBox_infos.Text == "")
+            if (this.text_command.Text == "")
             {
                 return;
             }
-            string name = comboBox_infos.Text;
+            string name = text_command.Text;
             if (MessageBox.Show(string.Format("{0}:削除します",name), "削除", MessageBoxButtons.OKCancel) == DialogResult.OK) 
             {
                 _infoCtrl.delete_info(name);
-                comboBox_infos.Items.Remove(name);
-                if (comboBox_infos.Items.Count > 0)
+
+                if (_infoCtrl.Infos.Count > 0)
                 {
-                    comboBox_infos.SelectedIndex = 0;
+                    ExecCommandInfo info = _infoCtrl.Infos[0];
+                    text_command.Text = info.name;
+                    this.disp_info(info);
                 }
             }
         }
@@ -301,26 +296,15 @@ namespace ExecCommandHelper
                 textBox_commandLine.Text, "[\r\n]+", " ");         
         }
 
-        private void Form_main_Load(object sender, EventArgs e)
-        {
-            this.load_infos();
-            string selected_info = Properties.Settings.Default.selected_info;
-            if (comboBox_infos.Items.Contains(selected_info))
-            {
-                comboBox_infos.Text = selected_info;
-                ExecCommandInfo info = _infoCtrl.get_info(selected_info);
-                this.disp_info(info);
-            }
-            textBox_commandLine.SelectionStart = 0;
 
-            this.Size = Properties.Settings.Default.main_size;   // databindingするとおかしくなる
-            menuitem_selline.Checked = Properties.Settings.Default.selline;
-            comboBox_encoding.Text = Properties.Settings.Default.output_encoding;
-        }
 
         private void button_read_info_Click(object sender, EventArgs e)
         {
-            disp_selected_info();
+            ExecCommandInfo info = _infoCtrl.get_info(text_command.Text);
+            if (info != null)
+            {
+                this.disp_info(info);
+            }
         }
 
         private void textBox_commandLine_DoubleClick(object sender, EventArgs e)
@@ -356,6 +340,18 @@ namespace ExecCommandHelper
             return enc;
         }
 
-
+        private void button_list_Click(object sender, EventArgs e)
+        {
+            Form_list form = new Form_list(this._infoCtrl,text_command.Text);
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                text_command.Text = form.Selected_info;
+                ExecCommandInfo info = _infoCtrl.get_info(form.Selected_info);
+                if (info != null)
+                {
+                    this.disp_info(info);
+                }
+            }
+        }
     }
 }

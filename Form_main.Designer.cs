@@ -50,7 +50,6 @@
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.comboBox_infos = new System.Windows.Forms.ToolStripComboBox();
             this.button_read_info = new System.Windows.Forms.ToolStripButton();
             this.button_save_info = new System.Windows.Forms.ToolStripButton();
             this.button_delete_info = new System.Windows.Forms.ToolStripButton();
@@ -60,6 +59,8 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.comboBox_encoding = new System.Windows.Forms.ToolStripComboBox();
+            this.text_command = new System.Windows.Forms.ToolStripTextBox();
+            this.button_list = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -77,7 +78,7 @@
             // button_exec
             // 
             this.button_exec.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_exec.Location = new System.Drawing.Point(19, 358);
+            this.button_exec.Location = new System.Drawing.Point(19, 368);
             this.button_exec.Name = "button_exec";
             this.button_exec.Size = new System.Drawing.Size(64, 20);
             this.button_exec.TabIndex = 3;
@@ -89,7 +90,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 328);
+            this.label2.Location = new System.Drawing.Point(16, 338);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(78, 12);
             this.label2.TabIndex = 4;
@@ -103,7 +104,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(629, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(729, 28);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -134,7 +135,7 @@
             // button_exec_dir
             // 
             this.button_exec_dir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_exec_dir.Location = new System.Drawing.Point(567, 325);
+            this.button_exec_dir.Location = new System.Drawing.Point(667, 335);
             this.button_exec_dir.Name = "button_exec_dir";
             this.button_exec_dir.Size = new System.Drawing.Size(20, 20);
             this.button_exec_dir.TabIndex = 7;
@@ -150,9 +151,9 @@
             // 
             this.textBox_exec_dir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_exec_dir.Location = new System.Drawing.Point(111, 326);
+            this.textBox_exec_dir.Location = new System.Drawing.Point(111, 336);
             this.textBox_exec_dir.Name = "textBox_exec_dir";
-            this.textBox_exec_dir.Size = new System.Drawing.Size(452, 19);
+            this.textBox_exec_dir.Size = new System.Drawing.Size(552, 19);
             this.textBox_exec_dir.TabIndex = 5;
             // 
             // textBox_commandLine
@@ -166,7 +167,7 @@
             this.textBox_commandLine.Multiline = true;
             this.textBox_commandLine.Name = "textBox_commandLine";
             this.textBox_commandLine.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_commandLine.Size = new System.Drawing.Size(566, 183);
+            this.textBox_commandLine.Size = new System.Drawing.Size(666, 193);
             this.textBox_commandLine.TabIndex = 1;
             this.textBox_commandLine.DoubleClick += new System.EventHandler(this.textBox_commandLine_DoubleClick);
             // 
@@ -177,7 +178,7 @@
             this.groupBox1.Controls.Add(this.radioButton_fullpath);
             this.groupBox1.Controls.Add(this.button_file);
             this.groupBox1.Controls.Add(this.radioButton_relativepath);
-            this.groupBox1.Location = new System.Drawing.Point(21, 278);
+            this.groupBox1.Location = new System.Drawing.Point(21, 288);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(293, 43);
             this.groupBox1.TabIndex = 8;
@@ -238,7 +239,8 @@
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(19, 19);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel1,
-            this.comboBox_infos,
+            this.text_command,
+            this.button_list,
             this.button_read_info,
             this.button_save_info,
             this.button_delete_info,
@@ -250,7 +252,7 @@
             this.comboBox_encoding});
             this.toolStrip1.Location = new System.Drawing.Point(0, 28);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(629, 28);
+            this.toolStrip1.Size = new System.Drawing.Size(729, 28);
             this.toolStrip1.TabIndex = 12;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -259,13 +261,6 @@
             this.toolStripLabel1.Name = "toolStripLabel1";
             this.toolStripLabel1.Size = new System.Drawing.Size(69, 25);
             this.toolStripLabel1.Text = "実行設定";
-            // 
-            // comboBox_infos
-            // 
-            this.comboBox_infos.DropDownWidth = 200;
-            this.comboBox_infos.Name = "comboBox_infos";
-            this.comboBox_infos.Size = new System.Drawing.Size(104, 28);
-            this.comboBox_infos.SelectedIndexChanged += new System.EventHandler(this.comboBox_infos_SelectedIndexChanged);
             // 
             // button_read_info
             // 
@@ -343,11 +338,27 @@
             this.comboBox_encoding.Name = "comboBox_encoding";
             this.comboBox_encoding.Size = new System.Drawing.Size(104, 28);
             // 
+            // text_command
+            // 
+            this.text_command.AutoSize = false;
+            this.text_command.Name = "text_command";
+            this.text_command.Size = new System.Drawing.Size(150, 25);
+            // 
+            // button_list
+            // 
+            this.button_list.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.button_list.Image = ((System.Drawing.Image)(resources.GetObject("button_list.Image")));
+            this.button_list.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.button_list.Name = "button_list";
+            this.button_list.Size = new System.Drawing.Size(24, 25);
+            this.button_list.Text = "…";
+            this.button_list.Click += new System.EventHandler(this.button_list_Click);
+            // 
             // Form_main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(629, 408);
+            this.ClientSize = new System.Drawing.Size(729, 418);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button_exec_dir);
@@ -398,7 +409,6 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripButton button_save_info;
-        private System.Windows.Forms.ToolStripComboBox comboBox_infos;
         private System.Windows.Forms.ToolStripButton button_delete_info;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton button_multiline;
@@ -408,6 +418,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Windows.Forms.ToolStripComboBox comboBox_encoding;
+        private System.Windows.Forms.ToolStripTextBox text_command;
+        private System.Windows.Forms.ToolStripButton button_list;
     }
 }
 

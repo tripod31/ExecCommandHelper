@@ -52,6 +52,12 @@
   <ItemGroup>
     <Compile Include="ExecCommand.cs" />
     <Compile Include="ExecCommandInfo.cs" />
+    <Compile Include="Form_list.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_list.Designer.cs">
+      <DependentUpon>Form_list.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +72,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form_list.resx">
+      <DependentUpon>Form_list.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_main.resx">
       <DependentUpon>Form_main.cs</DependentUpon>
     </EmbeddedResource>

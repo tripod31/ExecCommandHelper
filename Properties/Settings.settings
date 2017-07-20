@@ -26,5 +26,8 @@
     <Setting Name="output_encoding" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="form_list_size" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">569, 376</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

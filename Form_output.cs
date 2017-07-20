@@ -43,6 +43,7 @@ namespace ExecCommandHelper
                     return; 
                 }
             }
+            Properties.Settings.Default.form_output_size = this.Size;
 
 
         }
