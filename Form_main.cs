@@ -353,5 +353,11 @@ namespace ExecCommandHelper
                 }
             }
         }
+
+        private void textBox_commandLine_Enter(object sender, EventArgs e)
+        {
+            textBox_commandLine.SelectionStart = 0;
+            textBox_commandLine.SelectionLength = 0;
+        }
     }
 }

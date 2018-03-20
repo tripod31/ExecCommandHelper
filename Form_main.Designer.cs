@@ -50,6 +50,8 @@
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.text_command = new System.Windows.Forms.ToolStripTextBox();
+            this.button_list = new System.Windows.Forms.ToolStripButton();
             this.button_read_info = new System.Windows.Forms.ToolStripButton();
             this.button_save_info = new System.Windows.Forms.ToolStripButton();
             this.button_delete_info = new System.Windows.Forms.ToolStripButton();
@@ -59,8 +61,6 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.comboBox_encoding = new System.Windows.Forms.ToolStripComboBox();
-            this.text_command = new System.Windows.Forms.ToolStripTextBox();
-            this.button_list = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -170,6 +170,7 @@
             this.textBox_commandLine.Size = new System.Drawing.Size(666, 193);
             this.textBox_commandLine.TabIndex = 1;
             this.textBox_commandLine.DoubleClick += new System.EventHandler(this.textBox_commandLine_DoubleClick);
+            this.textBox_commandLine.Enter += new System.EventHandler(this.textBox_commandLine_Enter);
             // 
             // groupBox1
             // 
@@ -262,6 +263,22 @@
             this.toolStripLabel1.Size = new System.Drawing.Size(69, 25);
             this.toolStripLabel1.Text = "実行設定";
             // 
+            // text_command
+            // 
+            this.text_command.AutoSize = false;
+            this.text_command.Name = "text_command";
+            this.text_command.Size = new System.Drawing.Size(150, 25);
+            // 
+            // button_list
+            // 
+            this.button_list.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.button_list.Image = ((System.Drawing.Image)(resources.GetObject("button_list.Image")));
+            this.button_list.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.button_list.Name = "button_list";
+            this.button_list.Size = new System.Drawing.Size(24, 25);
+            this.button_list.Text = "…";
+            this.button_list.Click += new System.EventHandler(this.button_list_Click);
+            // 
             // button_read_info
             // 
             this.button_read_info.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -337,22 +354,6 @@
             "EUC"});
             this.comboBox_encoding.Name = "comboBox_encoding";
             this.comboBox_encoding.Size = new System.Drawing.Size(104, 28);
-            // 
-            // text_command
-            // 
-            this.text_command.AutoSize = false;
-            this.text_command.Name = "text_command";
-            this.text_command.Size = new System.Drawing.Size(150, 25);
-            // 
-            // button_list
-            // 
-            this.button_list.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.button_list.Image = ((System.Drawing.Image)(resources.GetObject("button_list.Image")));
-            this.button_list.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.button_list.Name = "button_list";
-            this.button_list.Size = new System.Drawing.Size(24, 25);
-            this.button_list.Text = "…";
-            this.button_list.Click += new System.EventHandler(this.button_list_Click);
             // 
             // Form_main
             // 
