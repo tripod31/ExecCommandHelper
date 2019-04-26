@@ -19,6 +19,6 @@ ExecCommandHelper
 -----
 ファイル削除のみでＯＫです。レジストリは使っていません。  
 
-<img src="http://www.geocities.jp/tripod31hoge/images/execcommandhelper.png">
+<img src="https://user-images.githubusercontent.com/6335693/56778369-d8593080-6810-11e9-88ec-119d7751d23d.png">
 
 
